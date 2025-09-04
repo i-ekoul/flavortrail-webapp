@@ -94,10 +94,12 @@ const FlavorTrailLanding = () => {
             <a href="#features" className="text-foreground hover:text-flavor-spice transition-colors">Features</a>
             <a href="#how-it-works" className="text-foreground hover:text-flavor-spice transition-colors">How it Works</a>
             <a href="#testimonials" className="text-foreground hover:text-flavor-spice transition-colors">Reviews</a>
-            <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-              <Play className="w-5 h-5 mr-2" />
-              Start Cooking
-            </Button>
+            <Link to="/app">
+              <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+                <Play className="w-5 h-5 mr-2" />
+                Get Cooking
+              </Button>
+            </Link>
           </div>
         </nav>
       </header>
@@ -123,10 +125,12 @@ const FlavorTrailLanding = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-                <Mail className="w-5 h-5 mr-2" />
-                Join the Wait
-              </Button>
+              <Link to="/app">
+                <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+                  <Play className="w-5 h-5 mr-2" />
+                  Start Exploring
+                </Button>
+              </Link>
               <Button variant="warm" size="lg" className="text-lg px-8 py-6">
                 <BookOpen className="w-5 h-5 mr-2" />
                 Learn More
@@ -346,22 +350,22 @@ const FlavorTrailLanding = () => {
               <Card className="bg-gradient-card border-border/50 shadow-card">
                 <CardContent className="p-6 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
-                    <Check className="w-8 h-8 text-white" />
+                    <Zap className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">Phase 1: Foundation</h3>
-                  <p className="text-muted-foreground">Core concept, design system, and user research completed</p>
-                  <Badge className="bg-green-100 text-green-800">Completed</Badge>
+                  <p className="text-muted-foreground">Core concept, design system, and user research in progress</p>
+                  <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-card border-border/50 shadow-card">
                 <CardContent className="p-6 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-flavor-citrus flex items-center justify-center mx-auto">
-                    <Zap className="w-8 h-8 text-white" />
+                    <Check className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">Phase 2: Alpha Testing</h3>
                   <p className="text-muted-foreground">Web app development, core features, and early user testing</p>
-                  <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
+                  <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
                 </CardContent>
               </Card>
 
