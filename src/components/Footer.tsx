@@ -7,12 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
               <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
                 <ChefHat className="h-8 w-8 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-white">FlavorTrail</span>
+                <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
                 <span className="text-sm text-white/70">Cook. Curiously.</span>
               </div>
             </Link>

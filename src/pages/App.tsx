@@ -10,8 +10,6 @@ import {
   Trophy,
   User,
   Settings,
-  LogOut,
-  Save,
   Play,
   Star,
   Clock,
@@ -19,6 +17,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getGuestProgress, updateGuestProgress, completeChallenge, updateStreak, type GuestProgress } from "@/lib/guestStorage";
+import Footer from "@/components/Footer";
 
 const FlavorTrailApp = () => {
   const [userProgress, setUserProgress] = useState<GuestProgress>(getGuestProgress());
@@ -41,10 +40,6 @@ const FlavorTrailApp = () => {
     alert("Great! You've completed today's challenge. Quest system coming soon!");
   };
 
-  const handleSaveProgress = () => {
-    // This will prompt for signup in the future
-    alert("Save your progress by creating an account! This feature will be available soon.");
-  };
 
   const sampleDailyPrompt = {
     title: "Fruit in Savory",
@@ -87,13 +82,13 @@ const FlavorTrailApp = () => {
       <header className="bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="h-12 w-12 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-                <ChefHat className="h-6 w-6 text-white" />
+            <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
+              <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
+                <ChefHat className="h-8 w-8 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-foreground">FlavorTrail</span>
-                <span className="text-xs text-muted-foreground">Cook. Curiously.</span>
+                <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+                <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
               </div>
             </Link>
             
@@ -103,15 +98,6 @@ const FlavorTrailApp = () => {
                   Guest Mode
                 </Badge>
               )}
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={handleSaveProgress}
-                className="flex items-center space-x-2"
-              >
-                <Save className="w-4 h-4" />
-                <span>Save Progress</span>
-              </Button>
               <Button variant="ghost" size="sm">
                 <Settings className="w-4 h-4" />
               </Button>
@@ -303,9 +289,12 @@ const FlavorTrailApp = () => {
                 </CardContent>
               </Card>
             )}
+
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

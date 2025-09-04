@@ -86,7 +86,7 @@ const FlavorTrailLanding = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">FlavorTrail</span>
+              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -94,7 +94,7 @@ const FlavorTrailLanding = () => {
             <a href="#features" className="text-foreground hover:text-flavor-spice transition-colors">Features</a>
             <a href="#how-it-works" className="text-foreground hover:text-flavor-spice transition-colors">How it Works</a>
             <a href="#testimonials" className="text-foreground hover:text-flavor-spice transition-colors">Reviews</a>
-            <Link to="/app">
+            <Link to="/dashboard">
               <Button variant="hero" size="lg" className="text-lg px-8 py-6">
                 <Play className="w-5 h-5 mr-2" />
                 Get Cooking
@@ -125,7 +125,7 @@ const FlavorTrailLanding = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/app">
+              <Link to="/dashboard">
                 <Button variant="hero" size="lg" className="text-lg px-8 py-6">
                   <Play className="w-5 h-5 mr-2" />
                   Start Exploring
@@ -222,7 +222,7 @@ const FlavorTrailLanding = () => {
 
             <Card className="bg-gradient-card border-border/50 shadow-card">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">✅ The FlavorTrail Way</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">✅ The <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span> Way</h3>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start space-x-2">
                     <span className="text-green-500 mt-1">•</span>

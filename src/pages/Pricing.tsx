@@ -65,12 +65,12 @@ const Pricing = () => {
       {/* Navigation Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
             <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">FlavorTrail</span>
+              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
