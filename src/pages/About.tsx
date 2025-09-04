@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChefHat, Heart, Users, Target, ArrowLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ChefHat, Heart, Users, Target, ArrowLeft, Coffee } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 
@@ -23,6 +24,21 @@ const About = () => {
     }
   ];
 
+  const team = [
+    {
+      name: "Emmalie Cole",
+      role: "Founder & Head Chef",
+      description: "Passionate culinary educator and entrepreneur dedicated to making cooking accessible, fun, and adventurous for home cooks everywhere.",
+      icon: ChefHat
+    },
+    {
+      name: "Stanislav Prygunov",
+      role: "Co-Founder & Experience Architect",
+      description: "Visionary quality strategist dedicated to crafting magical user experiences that make every cooking moment feel delightful and effortless.",
+      icon: Coffee
+    }
+  ];
+
 
   return (
     <div className="min-h-screen bg-gradient-warm">
@@ -34,12 +50,12 @@ const About = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
           <div className="flex items-center space-x-4">
-            <Link to="/">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)}>
               <Button variant="outline" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home
@@ -59,7 +75,7 @@ const About = () => {
         {/* Hero Section */}
         <section className="text-center space-y-6 mb-12">
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            About <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+            About <span className="text-brand">FlavorTrail</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             We're on a mission to help everyone develop an intuitive relationship with food through 
@@ -74,7 +90,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  FlavorTrail was born from a simple observation: too many people feel intimidated by cooking, 
+                  <span className="text-brand">FlavorTrail</span> was born from a simple observation: too many people feel intimidated by cooking, 
                   despite having a natural curiosity about food. Traditional recipe apps dump overwhelming 
                   ingredient lists and complex instructions, leaving home cooks feeling defeated before they even start.
                 </p>
@@ -84,7 +100,7 @@ const About = () => {
                   What if building culinary confidence could be as engaging as completing daily language lessons?
                 </p>
                 <p>
-                  That's how FlavorTrail was born - as the "Duolingo for cooking" that helps you discover flavors, 
+                  That's how <span className="text-brand">FlavorTrail</span> was born - as the "Duolingo for cooking" that helps you discover flavors, 
                   cultures, and techniques through curiosity-driven exploration rather than rigid instruction.
                 </p>
               </div>
@@ -110,6 +126,73 @@ const About = () => {
           </div>
         </section>
 
+        {/* Product Vision Section */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-8">Our Product Vision</h2>
+          <Card className="bg-gradient-card border-border/50 shadow-card">
+            <CardContent className="p-8 lg:p-12">
+              <div className="space-y-6 text-lg text-muted-foreground">
+                <p>
+                  <span className="text-brand">FlavorTrail</span> was born from a simple observation: too many people feel intimidated by cooking, 
+                  despite having a natural curiosity about food. Traditional recipe apps dump overwhelming 
+                  ingredient lists and complex instructions, leaving home cooks feeling defeated before they even start.
+                </p>
+                <p>
+                  We believed there had to be a better way. What if learning to cook could feel like playing a game? 
+                  What if cultural food exploration could happen naturally, through gentle prompts and bite-sized lessons? 
+                  What if building culinary confidence could be as engaging as completing daily language lessons?
+                </p>
+                <p>
+                  That's how <span className="text-brand">FlavorTrail</span> was born - as the <span className="text-brand">"Duolingo for cooking"</span> that helps you discover flavors, 
+                  cultures, and techniques through curiosity-driven exploration rather than rigid instruction.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Team Section */}
+        <section className="mb-12">
+          <div className="text-center space-y-4 mb-8">
+            <Badge className="bg-flavor-warm text-flavor-spice">
+              🍳 Our Team
+            </Badge>
+            <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+              Meet the People Making Cooking
+              <span className="text-brand"> Accessible </span>
+              to Everyone
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Learn about our passionate team of food lovers, designers, and engineers who are building 
+              the future of culinary education.
+            </p>
+          </div>
+          <div className="text-center space-y-4 mb-8">
+            <h3 className="text-3xl font-bold text-foreground">
+              Meet the Team
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              The passionate people behind <span className="text-brand">FlavorTrail</span>
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {team.map((member, index) => (
+              <Card key={index} className="bg-gradient-card border-border/50 shadow-card">
+                <CardContent className="p-8 space-y-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-warm flex items-center justify-center mx-auto">
+                    <member.icon className="w-10 h-10 text-flavor-spice" />
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-xl font-semibold text-foreground">{member.name}</h4>
+                    <p className="text-flavor-spice font-medium mb-3">{member.role}</p>
+                    <p className="text-muted-foreground leading-relaxed">{member.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
 
         {/* CTA Section */}
         <section className="text-center">
@@ -119,7 +202,7 @@ const About = () => {
               <p className="text-xl text-white/90 mb-6">
                 Join thousands of home cooks discovering their kitchen confidence
               </p>
-              <Link to="/">
+              <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="secondary" size="lg" className="text-lg px-8 py-6 bg-white text-flavor-spice hover:bg-white/90">
                   Get Started Today
                 </Button>

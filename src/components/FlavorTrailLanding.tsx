@@ -14,12 +14,15 @@ import {
   Heart,
   Play,
   Check,
-  Mail
+  Mail,
+  X,
+  CheckCircle
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-cooking.jpg";
 import appExamples from "@/assets/appExamples.png";
 import Footer from "@/components/Footer";
+import QuestDemo from "@/components/QuestDemo";
 
 const FlavorTrailLanding = () => {
   const features = [
@@ -82,12 +85,12 @@ const FlavorTrailLanding = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
             <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -95,7 +98,7 @@ const FlavorTrailLanding = () => {
             <a href="#features" className="text-foreground hover:text-flavor-spice transition-colors">Features</a>
             <a href="#how-it-works" className="text-foreground hover:text-flavor-spice transition-colors">How it Works</a>
             <a href="#testimonials" className="text-foreground hover:text-flavor-spice transition-colors">Reviews</a>
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
               <Button variant="hero" size="lg" className="text-lg px-8 py-6">
                 <Play className="w-5 h-5 mr-2" />
                 Get Cooking
@@ -121,7 +124,7 @@ const FlavorTrailLanding = () => {
                       </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
                 Develop an 
-                <span className="bg-gradient-hero bg-clip-text text-transparent"> Intuitive </span>
+                <span className="text-brand"> Intuitive </span>
                 Relationship with Food
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg">
@@ -132,13 +135,13 @@ const FlavorTrailLanding = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/explore">
+              <Link to="/explore" onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="hero" size="lg" className="text-lg px-8 py-6">
                   <MapPin className="w-5 h-5 mr-2" />
                   Start Exploring
                 </Button>
               </Link>
-              <Link to="/blog">
+              <Link to="/about" onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="warm" size="lg" className="text-lg px-8 py-6">
                   <BookOpen className="w-5 h-5 mr-2" />
                   Learn More
@@ -155,24 +158,9 @@ const FlavorTrailLanding = () => {
               ))}
             </div>
 
-            {/* Sample Daily Prompt */}
-            <div className="mt-8 p-6 bg-background/50 rounded-2xl border border-border/30 hover:bg-background/70 hover:border-flavor-spice/30 transition-all duration-300 cursor-pointer hover:shadow-lg">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-flavor-citrus rounded-full flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-sm font-medium text-flavor-spice">Today's Sample Prompt</span>
-              </div>
-              <p className="text-foreground font-medium">
-                "Use a fruit in a savory dish you've never tried before. What unexpected flavor combination will you discover?"
-              </p>
-              <div className="mt-3 flex items-center space-x-2 text-sm text-muted-foreground">
-                <span>⏱️ 2 min challenge</span>
-                <span>•</span>
-                <span>🎯 Creativity boost</span>
-                <span>•</span>
-                <span>📚 Learn as you cook</span>
-              </div>
+            {/* Quest Demo Component */}
+            <div className="mt-8">
+              <QuestDemo />
             </div>
           </div>
           
@@ -193,61 +181,75 @@ const FlavorTrailLanding = () => {
       </section>
 
       {/* Why FlavorTrail Section */}
-      <section className="py-8 lg:py-12 bg-background">
+      <section className="py-16 lg:py-20 bg-gradient-to-br from-flavor-cream/30 to-flavor-spice/10">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-3 mb-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              Why <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail?</span>
+          <div className="text-center space-y-6 mb-16">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 border border-flavor-spice/20">
+              <Sparkles className="h-5 w-5 text-flavor-spice" />
+              <span className="text-sm font-medium text-flavor-spice">The Problem We Solve</span>
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold text-foreground">
+              Why <span className="text-brand">FlavorTrail?</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Traditional cooking education is overwhelming. We make it simple, fun, and achievable.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Traditional cooking education is overwhelming. We make it <span className="text-brand">simple</span>, fun, and achievable.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-5">
-                <h3 className="text-xl font-semibold text-foreground mb-3">❌ The Old Way</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start space-x-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>Overwhelming recipe lists with 20+ ingredients</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <Card className="bg-white/60 backdrop-blur-sm border-red-200/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center shadow-lg">
+                    <X className="w-7 h-7 text-red-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800">The Old Way</h3>
+                </div>
+                <ul className="space-y-4 text-gray-600">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Overwhelming recipe lists with 20+ ingredients</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>Complex meal planning that feels like homework</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Complex meal planning that feels like homework</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>All-or-nothing approach that leads to burnout</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">All-or-nothing approach that leads to burnout</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-red-500 mt-1">•</span>
-                    <span>No guidance on building cooking intuition</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">No guidance on building cooking intuition</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-5">
-                <h3 className="text-xl font-semibold text-foreground mb-3">✅ The <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span> Way</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start space-x-2">
-                    <span className="text-green-500 mt-1">•</span>
-                    <span>Bite-sized daily prompts that spark curiosity</span>
+            <Card className="bg-gradient-to-br from-flavor-spice/10 to-flavor-berry/10 border-flavor-spice/30 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 bg-gradient-to-br from-flavor-spice to-flavor-berry border-2 border-flavor-spice/30 rounded-full flex items-center justify-center shadow-lg">
+                    <CheckCircle className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800">The <span className="text-brand">FlavorTrail</span> Way</h3>
+                </div>
+                <ul className="space-y-4 text-gray-600">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-gradient-to-r from-flavor-spice to-flavor-berry rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Bite-sized daily prompts that spark curiosity</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-green-500 mt-1">•</span>
-                    <span>Gamified learning that feels like play</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-gradient-to-r from-flavor-spice to-flavor-berry rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Gamified learning that feels like play</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-green-500 mt-1">•</span>
-                    <span>Progressive skill building at your own pace</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-gradient-to-r from-flavor-spice to-flavor-berry rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Progressive skill building at your own pace</span>
                   </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-green-500 mt-1">•</span>
-                    <span>Learn-as-you-go approach that builds confidence</span>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-gradient-to-r from-flavor-spice to-flavor-berry rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="leading-relaxed">Learn-as-you-go approach that builds confidence</span>
                   </li>
                 </ul>
               </CardContent>
@@ -261,7 +263,7 @@ const FlavorTrailLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-              Your Culinary Adventure Starts Here
+              Your Culinary <span className="text-brand">Adventure</span> Starts Here
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Discover the joy of cooking through gamified learning, daily challenges, 
@@ -300,7 +302,7 @@ const FlavorTrailLanding = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4">
-                  Simple. Fun. Effective.
+                  <span className="text-brand">Simple</span>. Fun. Effective.
                 </h2>
                 <p className="text-lg text-muted-foreground">
                   No overwhelming recipes or complex meal planning. Just bite-sized 
@@ -313,7 +315,11 @@ const FlavorTrailLanding = () => {
                   {
                     step: "1",
                     title: "Start Your Day",
-                    description: "Get a fun, curiosity-driven prompt to explore"
+                    description: (
+                      <>
+                        Get a fun, curiosity-driven prompt to explore
+                      </>
+                    )
                   },
                   {
                     step: "2", 
@@ -347,15 +353,15 @@ const FlavorTrailLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-              Our <span className="bg-gradient-hero bg-clip-text text-transparent">Development</span> Journey
+              Our <span className="text-brand">Development</span> Journey
             </h2>
             <p className="text-lg text-muted-foreground">
               Follow our progress as we build the future of culinary education
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="bg-gradient-card border-border/50 shadow-card">
                 <CardContent className="p-6 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
@@ -385,7 +391,18 @@ const FlavorTrailLanding = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">Phase 3: Beta & Mobile</h3>
                   <p className="text-muted-foreground">Beta testing, iOS/Android apps, and community features</p>
-                  <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
+                  <Badge className="bg-gray-100 text-gray-600">2026</Badge>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card border-border/50 shadow-card">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-flavor-berry flex items-center justify-center mx-auto">
+                    <Star className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">Phase 4: Advanced Features</h3>
+                  <p className="text-muted-foreground">Premium analytics, personalized recommendations, and advanced quests</p>
+                  <Badge className="bg-gray-100 text-gray-600">2027</Badge>
                 </CardContent>
               </Card>
             </div>
@@ -434,7 +451,7 @@ const FlavorTrailLanding = () => {
               Ready to Transform Your Cooking?
             </h2>
             <p className="text-xl text-white/90">
-              Join the waitlist and be the first to experience FlavorTrail when we launch.
+              Join the waitlist and be the first to experience <span className="text-brand">FlavorTrail</span> when we launch.
             </p>
             
             {/* Waitlist Signup */}

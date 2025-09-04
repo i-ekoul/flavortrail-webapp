@@ -9,6 +9,8 @@ import Explore from "./pages/Explore";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Pricing from "./pages/Pricing";
+import EarlyAccess from "./pages/EarlyAccess";
+import Community from "./pages/Community";
 import Premium from "./pages/Premium";
 import Careers from "./pages/Careers";
 import HelpCenter from "./pages/HelpCenter";
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/early-access" element={<EarlyAccess />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/premium" element={<Premium />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/help" element={<HelpCenter />} />

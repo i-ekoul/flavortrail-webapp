@@ -56,7 +56,7 @@ const Premium = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -85,7 +85,7 @@ const Premium = () => {
             Premium Experience
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-foreground">
-            <span className="bg-gradient-hero bg-clip-text text-transparent">
+            <span className="text-brand">
               Premium
             </span> Features
             <br />
@@ -144,7 +144,7 @@ const Premium = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-8">
             <h2 className="text-3xl font-bold text-foreground">
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Mobile Apps</span> Coming Soon
+              <span className="text-brand">Mobile Apps</span> Coming Soon
             </h2>
             <p className="text-lg text-muted-foreground">
               Native iOS and Android apps with enhanced features and offline capabilities

@@ -54,7 +54,7 @@ const HelpCenter = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -78,35 +78,28 @@ const HelpCenter = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
+          <Badge className="bg-flavor-warm text-flavor-spice mb-4">
+            🚧 Under Construction
+          </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            How Can We <span className="bg-gradient-hero bg-clip-text text-transparent">Help?</span>
+            Help Center <span className="text-brand">Coming Soon</span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            Browse our FAQ for instant answers to common questions about FlavorTrail.
+            We're building a comprehensive help center with guides, FAQs, and support resources. 
+            For now, you can reach out to us directly with any questions.
           </p>
           
-          {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-            <Input 
-              placeholder="Search for help articles, guides, and more..." 
-              className="pl-12 h-14 text-lg bg-background border-border/50 shadow-sm focus:shadow-md transition-shadow"
-            />
-          </div>
-          
-          {/* Quick Stats */}
-          <div className="flex justify-center space-x-8 pt-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-flavor-spice">8</div>
-              <div className="text-sm text-muted-foreground">FAQ Topics</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-flavor-spice">24/7</div>
-              <div className="text-sm text-muted-foreground">Self-Service</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-flavor-spice">2-3</div>
-              <div className="text-sm text-muted-foreground">Days Response</div>
+          {/* Coming Soon Message */}
+          <div className="max-w-2xl mx-auto p-6 bg-gradient-card border border-border/50 rounded-xl">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-full flex items-center justify-center mx-auto">
+                <HelpCircle className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">Help Center in Development</h3>
+              <p className="text-muted-foreground">
+                We're working on creating a comprehensive help center with searchable articles, 
+                step-by-step guides, and detailed FAQs. In the meantime, we're here to help you directly!
+              </p>
             </div>
           </div>
         </div>
@@ -116,10 +109,10 @@ const HelpCenter = () => {
       <section className="container mx-auto px-4 py-12 bg-background">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold text-foreground">
-            Browse by <span className="bg-gradient-hero bg-clip-text text-transparent">Category</span>
+            Planned <span className="text-brand">Categories</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Help topics organized by common areas of interest
+            We're organizing help topics by common areas of interest. Coming soon!
           </p>
         </div>
 
@@ -148,10 +141,10 @@ const HelpCenter = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Frequently Asked</span> Questions
-          </h2>
+              <span className="text-brand">Basic</span> Questions
+            </h2>
             <p className="text-lg text-muted-foreground">
-              Quick answers to the most common questions about FlavorTrail
+              A few answers to get you started. More comprehensive FAQs coming soon!
             </p>
           </div>
           
@@ -272,34 +265,32 @@ const HelpCenter = () => {
       <section className="container mx-auto px-4 py-12 bg-background">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-foreground">
-            Still Need <span className="bg-gradient-hero bg-clip-text text-transparent">Help?</span>
+            Get <span className="text-brand">Personal</span> Support
           </h2>
           <p className="text-lg text-muted-foreground">
-            Can't find what you're looking for? We're here to help with personalized support.
+            Since our help center is still under construction, we're here to help you directly. 
+            Reach out and we'll get back to you personally within 2-3 business days.
           </p>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="max-w-md mx-auto">
             <Card className="bg-gradient-card border-border/50 shadow-card">
               <CardHeader className="text-center">
-                <Mail className="w-12 h-12 text-flavor-spice mx-auto mb-4" />
-                <CardTitle className="text-foreground">Email Support</CardTitle>
+                <Mail className="w-16 h-16 text-flavor-spice mx-auto mb-4" />
+                <CardTitle className="text-2xl text-foreground">Get in Touch</CardTitle>
               </CardHeader>
-              <CardContent className="text-center space-y-4">
-                <p className="text-muted-foreground">Get detailed help with your questions</p>
-                <Button variant="spice" className="w-full">Send Email</Button>
-                <p className="text-sm text-muted-foreground">Response within 2-3 business days</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardHeader className="text-center">
-                <MessageCircle className="w-12 h-12 text-flavor-spice mx-auto mb-4" />
-                <CardTitle className="text-foreground">Contact Form</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center space-y-4">
-                <p className="text-muted-foreground">Share feedback or report issues</p>
-                <Button variant="outline" className="w-full">Contact Us</Button>
-                <p className="text-sm text-muted-foreground">We read every message personally</p>
+              <CardContent className="text-center space-y-6">
+                <p className="text-muted-foreground">
+                  Have a question, feedback, or need help? We'd love to hear from you.
+                </p>
+                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="spice" size="lg" className="w-full text-lg px-8 py-6">
+                    <Mail className="w-5 h-5 mr-2" />
+                    Contact Us
+                  </Button>
+                </Link>
+                <p className="text-sm text-muted-foreground">
+                  We personally respond to every message within 2-3 business days
+                </p>
               </CardContent>
             </Card>
           </div>

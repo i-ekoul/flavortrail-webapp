@@ -12,7 +12,7 @@ const Footer = () => {
                 <ChefHat className="h-8 w-8 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+                <span className="text-xl font-bold text-brand">FlavorTrail</span>
                 <span className="text-sm text-white/70">Cook. Curiously.</span>
               </div>
             </Link>
@@ -25,6 +25,8 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Product</h3>
             <ul className="space-y-2 text-white/70">
               <li><a href="/#features" className="hover:text-white transition-colors">Features</a></li>
+              <li><Link to="/early-access" className="hover:text-white transition-colors" onClick={() => window.scrollTo(0, 0)}>Early Access</Link></li>
+              <li><Link to="/community" className="hover:text-white transition-colors" onClick={() => window.scrollTo(0, 0)}>Community</Link></li>
               <li><Link to="/pricing" className="hover:text-white transition-colors" onClick={() => window.scrollTo(0, 0)}>Pricing</Link></li>
               <li><Link to="/premium" className="hover:text-white transition-colors" onClick={() => window.scrollTo(0, 0)}>Premium</Link></li>
             </ul>
@@ -50,7 +52,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-white/20 mt-8 pt-8 text-center text-white/70">
-          <p>&copy; 2024 FlavorTrail. All rights reserved. Made with ❤️ for food adventurers.</p>
+          <p>&copy; 2024 <span className="text-brand">FlavorTrail</span>. All rights reserved. Made with ❤️ for food adventurers.</p>
         </div>
       </div>
     </footer>

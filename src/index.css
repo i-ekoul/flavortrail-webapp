@@ -150,3 +150,10 @@ All colors MUST be HSL.
     transform: translateY(-8px);
   }
 }
+
+/* FlavorTrail Brand Utilities */
+@layer utilities {
+  .text-brand {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+}

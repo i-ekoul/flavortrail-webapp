@@ -8,19 +8,19 @@ import Footer from "@/components/Footer";
 const Pricing = () => {
   const plans = [
     {
-      name: "Early Access",
-      price: "Free",
-      period: "during development",
-      description: "Join our waitlist and get early access to alpha testing",
+      name: "Free",
+      price: "$0",
+      period: "forever",
+      description: "Start your culinary journey at no cost",
       features: [
-        "Join the waitlist",
-        "Early access to alpha version (web)",
-        "Direct feedback to our team",
-        "Help shape the product",
-        "Free premium features during beta",
-        "Priority access to mobile apps"
+        "3 daily curiosity prompts",
+        "Basic flavor quests",
+        "Progress tracking",
+        "Community access",
+        "Core learning features",
+        "Email support"
       ],
-      cta: "Join Waitlist",
+      cta: "Get Started Free",
       popular: true,
       status: "available"
     },
@@ -28,7 +28,7 @@ const Pricing = () => {
       name: "FlavorTrail Plus",
       price: "$2.99",
       period: "per month",
-      description: "Full access when we launch (planned for 2025)",
+      description: "Coming in Phase 3 (2026) - after core features are complete",
       features: [
         "Unlimited daily prompts",
         "All flavor quests",
@@ -37,7 +37,7 @@ const Pricing = () => {
         "Premium content library",
         "Priority support"
       ],
-      cta: "Coming Soon",
+      cta: "Phase 3 (2026)",
       popular: false,
       status: "coming-soon"
     },
@@ -45,7 +45,7 @@ const Pricing = () => {
       name: "Culinary Master",
       price: "$9.99",
       period: "per month",
-      description: "Advanced features for serious food enthusiasts",
+      description: "Advanced features coming in Phase 4 (2027)",
       features: [
         "Everything in Plus",
         "Advanced analytics",
@@ -54,7 +54,7 @@ const Pricing = () => {
         "Premium quests",
         "Direct team communication"
       ],
-      cta: "Coming Soon",
+      cta: "Phase 4 (2027)",
       popular: false,
       status: "coming-soon"
     }
@@ -62,32 +62,25 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation Header */}
+      {/* Navigation */}
       <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
-            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
+        <nav className="flex items-center justify-between">
+          <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center space-x-2">
+            <div className="h-8 w-8 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
+              <ChefHat className="h-5 w-5 text-white" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
-              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
-            </div>
+            <span className="text-xl font-bold text-brand">
+              <span className="text-brand">FlavorTrail</span>
+            </span>
           </Link>
-          <div className="flex items-center space-x-4">
-            <Link to="/">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-            <img 
-              src="/ft.mascot.wo-bg.png" 
-              alt="FlavorTrail Mascot" 
-              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ transform: 'scaleX(-1)' }}
-            />
-          </div>
+          <Link 
+            to="/" 
+            onClick={() => window.scrollTo(0, 0)}
+            className="inline-flex items-center gap-2 text-flavor-spice hover:text-flavor-berry transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Home
+          </Link>
         </nav>
       </header>
 
@@ -95,140 +88,154 @@ const Pricing = () => {
       <header className="container mx-auto px-4 py-6">
         <div className="text-center space-y-4">
           <Badge className="bg-flavor-warm text-flavor-spice mb-4">
-            🚧 Currently in Development
+            💰 Simple, Transparent Pricing
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            <span className="bg-gradient-hero bg-clip-text text-transparent">Pricing</span> & Early Access
+            <span className="text-brand">Pricing</span> Plans
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join our waitlist for early access, or see our planned pricing for when we launch
+            Simple, transparent pricing for when we launch. Get early access for free during development.
           </p>
         </div>
       </header>
 
-      {/* Development Timeline */}
+      {/* Pricing Cards */}
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-3xl font-bold text-foreground">
-              Our <span className="bg-gradient-hero bg-clip-text text-transparent">Development</span> Roadmap
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            {plans.map((plan, index) => (
+              <Card 
+                key={index} 
+                className={`bg-gradient-card border-border/50 shadow-card relative ${
+                  plan.popular ? 'ring-2 ring-flavor-spice scale-105' : ''
+                } hover:shadow-lg transition-all duration-300`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-gradient-to-r from-flavor-spice to-flavor-berry text-white px-4 py-1">
+                      <Star className="w-4 h-4 mr-1" />
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardHeader className="text-center pb-4">
+                  <CardTitle className="text-2xl font-bold text-foreground">
+                    {plan.name}
+                  </CardTitle>
+                  <div className="space-y-1">
+                    <div className="text-4xl font-bold text-foreground">
+                      {plan.price}
+                    </div>
+                    <div className="text-muted-foreground">
+                      {plan.period}
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground pt-2">
+                    {plan.description}
+                  </p>
+                </CardHeader>
+                
+                <CardContent className="space-y-6">
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-3">
+                        <Check className="h-5 w-5 text-flavor-spice mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="pt-4">
+                    {plan.status === 'available' ? (
+                      <Link to="/early-access" onClick={() => window.scrollTo(0, 0)}>
+                        <Button className="w-full bg-gradient-to-r from-flavor-spice to-flavor-berry hover:shadow-lg transition-all duration-200 hover:scale-105">
+                          <Zap className="w-4 h-4 mr-2" />
+                          {plan.cta}
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button 
+                        className="w-full bg-gray-100 text-gray-600 cursor-not-allowed"
+                        disabled={true}
+                      >
+                        {plan.cta}
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Value Proposition */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Why Choose <span className="text-brand">FlavorTrail</span>?
             </h2>
             <p className="text-lg text-muted-foreground">
-              Follow our journey from web app to mobile platforms
+              We're building the future of cooking education - one bite-sized lesson at a time
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
-                  <span className="text-2xl">🌐</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">Phase 1: Web App</h3>
-                <p className="text-muted-foreground">Alpha testing on web browsers, core features development</p>
-                <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-flavor-citrus flex items-center justify-center mx-auto">
-                  <span className="text-2xl">📱</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">Phase 2: Mobile Apps</h3>
-                <p className="text-muted-foreground">iOS and Android apps with native features and offline mode</p>
-                <Badge className="bg-gray-100 text-gray-600">Planned 2026</Badge>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-flavor-herb flex items-center justify-center mx-auto">
-                  <span className="text-2xl">🚀</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">Phase 3: Full Launch</h3>
-                <p className="text-muted-foreground">Beta testing, community features, and premium content</p>
-                <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-flavor-spice rounded-full flex items-center justify-center mx-auto">
+                <ChefHat className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">Gamified Learning</h3>
+              <p className="text-muted-foreground">Make cooking fun with quests, badges, and daily challenges</p>
+            </div>
+            
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-flavor-citrus rounded-full flex items-center justify-center mx-auto">
+                <Zap className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">Bite-Sized Lessons</h3>
+              <p className="text-muted-foreground">Learn at your own pace with 5-minute daily sessions</p>
+            </div>
+            
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-flavor-berry rounded-full flex items-center justify-center mx-auto">
+                <Star className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">Community Driven</h3>
+              <p className="text-muted-foreground">Connect with fellow food adventurers and share discoveries</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
+      {/* CTA Section */}
       <section className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
-            <Card key={index} className={`relative bg-gradient-card border-border/50 shadow-card ${plan.popular ? 'ring-2 ring-flavor-spice' : ''} ${plan.status === 'coming-soon' ? 'opacity-75' : ''}`}>
-              {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-flavor-spice text-white">
-                  <Star className="w-4 h-4 mr-1" />
-                  Available Now
-                </Badge>
-              )}
-              {plan.status === 'coming-soon' && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white">
-                  <Zap className="w-4 h-4 mr-1" />
-                  Coming Soon
-                </Badge>
-              )}
-              <CardHeader className="text-center space-y-4">
-                <CardTitle className="text-2xl font-bold text-foreground">{plan.name}</CardTitle>
-                <div className="space-y-2">
-                  <div className="text-4xl font-bold text-flavor-spice">{plan.price}</div>
-                  <div className="text-muted-foreground">{plan.period}</div>
-                </div>
-                <p className="text-muted-foreground">{plan.description}</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <Check className="w-5 h-5 text-flavor-herb flex-shrink-0" />
-                      <span className="text-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button 
-                  variant={plan.popular ? "spice" : plan.status === 'coming-soon' ? "outline" : "outline"} 
-                  size="lg" 
-                  className="w-full"
-                  disabled={plan.status === 'coming-soon'}
-                >
-                  {plan.cta}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="container mx-auto px-4 py-12 bg-background rounded-t-3xl">
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
-          <div className="space-y-4 text-left">
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">When will FlavorTrail be available?</h3>
-              <p className="text-muted-foreground">We're currently in active development. Join our waitlist to get early access to the alpha version when it's ready.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">What's included in early access?</h3>
-              <p className="text-muted-foreground">Early access users will get free premium features during the beta period and can help shape the product with direct feedback to our team.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">Will pricing change when you launch?</h3>
-              <p className="text-muted-foreground">The pricing shown is our planned launch pricing. Early access users will get special pricing and free premium features during beta.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">What devices will be supported?</h3>
-              <p className="text-muted-foreground">We're starting with web browsers for alpha testing, with iOS and Android mobile apps planned for 2026. Your progress will sync across all platforms.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">What's the difference between alpha and beta?</h3>
-              <p className="text-muted-foreground">Alpha testing focuses on core features and functionality with a small group of early users. Beta testing will include community features and premium content for a larger audience.</p>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <Card className="bg-gradient-card border-border/50 shadow-card">
+            <CardContent className="p-8 space-y-6">
+              <h2 className="text-3xl font-bold text-foreground">
+                Want to Try <span className="text-brand">FlavorTrail</span> for Free?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Join our early access program and help shape the future of cooking education
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/early-access" onClick={() => window.scrollTo(0, 0)}>
+                  <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-flavor-spice to-flavor-berry hover:shadow-lg transition-all duration-200 hover:scale-105">
+                    <Zap className="w-5 h-5 mr-2" />
+                    Get Early Access
+                  </Button>
+                </Link>
+                <Link to="/about" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
       

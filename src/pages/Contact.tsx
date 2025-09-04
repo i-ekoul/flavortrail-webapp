@@ -18,7 +18,7 @@ const Contact = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -46,7 +46,7 @@ const Contact = () => {
             💬 Get in Touch
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            We'd Love to <span className="bg-gradient-hero bg-clip-text text-transparent">Hear From You</span>
+            We'd Love to <span className="text-brand">Hear From You</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Share your feedback, report issues, or tell us about your culinary adventures. 
@@ -114,20 +114,9 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-flavor-spice" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">Direct Email</h3>
-                    <p className="text-muted-foreground">support@flavortrail.co</p>
-                    <p className="text-sm text-muted-foreground">For detailed questions and feedback</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-warm flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-6 h-6 text-flavor-spice" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">Quick Message</h3>
-                    <p className="text-muted-foreground">Use the form on this page</p>
-                    <p className="text-sm text-muted-foreground">Perfect for sharing stories and ideas</p>
+                    <h3 className="text-lg font-semibold text-foreground">Get in Touch</h3>
+                    <p className="text-muted-foreground">Use the form on this page or email us directly</p>
+                    <p className="text-sm text-muted-foreground">We personally respond to every message within 2-3 business days</p>
                   </div>
                 </div>
 
@@ -139,6 +128,17 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-foreground">Our Team</h3>
                     <p className="text-muted-foreground">Small founding team</p>
                     <p className="text-sm text-muted-foreground">Personal attention guaranteed</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-warm flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-6 h-6 text-flavor-spice" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">What We Love</h3>
+                    <p className="text-muted-foreground">Feedback, stories, and cooking adventures</p>
+                    <p className="text-sm text-muted-foreground">Your input helps shape FlavorTrail's future</p>
                   </div>
                 </div>
               </CardContent>

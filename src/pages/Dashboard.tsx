@@ -19,6 +19,7 @@ import {
 import { Link } from "react-router-dom";
 import { getGuestProgress, updateGuestProgress, completeChallenge, updateStreak, type GuestProgress } from "@/lib/guestStorage";
 import Footer from "@/components/Footer";
+import QuestDemo from "@/components/QuestDemo";
 
 const Dashboard = () => {
   const [userProgress, setUserProgress] = useState<GuestProgress>(getGuestProgress());
@@ -34,21 +35,19 @@ const Dashboard = () => {
     setUserProgress(updatedProgress);
   }, []);
 
-  const handleStartQuest = () => {
+  const handleChallengeStart = (challengeId: string) => {
     // Complete the daily challenge
-    const updatedProgress = completeChallenge('daily-fruit-savory');
+    const updatedProgress = completeChallenge(challengeId);
     setUserProgress(updatedProgress);
-    alert("Great! You've completed today's challenge. Quest system coming soon!");
+    alert("Great! You've started today's challenge. Quest system coming soon!");
+  };
+
+  const handleChallengeShare = (challengeId: string) => {
+    // Handle sharing functionality
+    alert("Share functionality coming soon! Challenge ID: " + challengeId);
   };
 
 
-  const sampleDailyPrompt = {
-    title: "Fruit in Savory",
-    description: "Use a fruit in a savory dish you've never tried before. What unexpected flavor combination will you discover?",
-    timeEstimate: "2 min",
-    difficulty: "Easy",
-    category: "Creativity"
-  };
 
   const sampleQuests = [
     {
@@ -88,7 +87,7 @@ const Dashboard = () => {
                 <ChefHat className="h-8 w-8 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+                <span className="text-xl font-bold text-brand">FlavorTrail</span>
                 <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
               </div>
             </Link>
@@ -120,7 +119,7 @@ const Dashboard = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold mb-2">
-                Welcome to <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>!
+                Welcome to <span className="text-brand">FlavorTrail</span>!
               </h1>
               <p className="text-muted-foreground">
                 {isGuest 
@@ -152,7 +151,7 @@ const Dashboard = () => {
                       <p className="text-sm text-muted-foreground">Discover food cultures from around the globe</p>
                     </div>
                   </div>
-                  <Link to="/explore">
+                  <Link to="/explore" onClick={() => window.scrollTo(0, 0)}>
                     <Button variant="hero" size="sm">
                       <MapPin className="w-4 h-4 mr-2" />
                       Start Exploring
@@ -161,47 +160,11 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-            {/* Today's Daily Prompt */}
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Sparkles className="w-5 h-5 text-flavor-citrus" />
-                  <span>Today's Challenge</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {sampleDailyPrompt.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    {sampleDailyPrompt.description}
-                  </p>
-                  <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{sampleDailyPrompt.timeEstimate}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Target className="w-4 h-4" />
-                      <span>{sampleDailyPrompt.difficulty}</span>
-                    </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {sampleDailyPrompt.category}
-                    </Badge>
-                  </div>
-                </div>
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  className="w-full"
-                  onClick={handleStartQuest}
-                >
-                  <Play className="w-4 h-4 mr-2" />
-                  Start Challenge
-                </Button>
-              </CardContent>
-            </Card>
+            {/* Quest Demo Component */}
+            <QuestDemo 
+              onChallengeStart={handleChallengeStart}
+              onChallengeShare={handleChallengeShare}
+            />
 
             {/* Available Quests */}
             <Card className="bg-gradient-card border-border/50 shadow-card">

@@ -24,7 +24,7 @@ const NotFound = () => {
 
         {/* 404 Content */}
         <div className="mb-8">
-          <h1 className="text-8xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4">
+          <h1 className="text-8xl font-bold text-brand mb-4">
             404
           </h1>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -61,11 +61,11 @@ const NotFound = () => {
         <div className="mt-8 p-4 bg-white/50 rounded-lg border border-flavor-spice/20">
           <p className="text-sm text-gray-600">
             💡 <strong>Pro tip:</strong> Try exploring our{" "}
-            <Link to="/explore" className="text-flavor-spice hover:underline">
+            <Link to="/explore" className="text-flavor-spice hover:underline" onClick={() => window.scrollTo(0, 0)}>
               recipe collection
             </Link>{" "}
             or check out our{" "}
-            <Link to="/blog" className="text-flavor-spice hover:underline">
+            <Link to="/blog" className="text-flavor-spice hover:underline" onClick={() => window.scrollTo(0, 0)}>
               cooking blog
             </Link>{" "}
             for inspiration!

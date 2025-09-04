@@ -16,7 +16,7 @@ const Blog = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -45,7 +45,7 @@ const Blog = () => {
             Coming Soon
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            The <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span> Blog
+            The <span className="text-brand">FlavorTrail</span> Blog
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             We're crafting amazing culinary content to inspire your kitchen journey. 

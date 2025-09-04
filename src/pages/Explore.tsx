@@ -152,13 +152,13 @@ const Explore: React.FC = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-foreground/80">Cook. Curiously.</span>
             </div>
           </Link>
           
           <div className="flex items-center space-x-4">
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
               <Button variant="outline" className="bg-white/90 border-white/60 text-foreground hover:bg-white hover:border-flavor-spice/30">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Dashboard
@@ -217,7 +217,7 @@ const Explore: React.FC = () => {
             <h3 className="text-lg font-semibold text-foreground mb-2">Guest Mode Active</h3>
             <p className="text-muted-foreground mb-4">
               You're exploring as a guest! Your discoveries won't be saved. 
-              <Link to="/premium" className="text-flavor-spice hover:text-flavor-berry transition-colors ml-1 font-semibold">
+              <Link to="/premium" className="text-flavor-spice hover:text-flavor-berry transition-colors ml-1 font-semibold" onClick={() => window.scrollTo(0, 0)}>
                 Sign up to save your culinary journey
               </Link>
             </p>

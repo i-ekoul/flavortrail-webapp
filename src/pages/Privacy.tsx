@@ -17,7 +17,7 @@ const Privacy = () => {
               <ChefHat className="h-8 w-8 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
+              <span className="text-xl font-bold text-brand">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
@@ -45,7 +45,7 @@ const Privacy = () => {
             🛡️ Your Privacy Matters
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            <span className="bg-gradient-hero bg-clip-text text-transparent">Privacy</span> Policy
+            <span className="text-brand">Privacy</span> Policy
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             We're committed to protecting your privacy and being transparent about how we collect, 
@@ -62,7 +62,7 @@ const Privacy = () => {
       <section className="container mx-auto px-4 py-12 bg-background">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold text-foreground">
-            Our <span className="bg-gradient-hero bg-clip-text text-transparent">Privacy</span> Principles
+            Our <span className="text-brand">Privacy</span> Principles
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             The core values that guide how we handle your personal information
@@ -110,7 +110,7 @@ const Privacy = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Detailed</span> Privacy Policy
+              <span className="text-brand">Detailed</span> Privacy Policy
             </h2>
             <p className="text-lg text-muted-foreground">
               Comprehensive information about how we collect, use, and protect your data
