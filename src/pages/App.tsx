@@ -6,6 +6,7 @@ import {
   ChefHat, 
   Sparkles, 
   Map, 
+  MapPin,
   BookOpen, 
   Trophy,
   User,
@@ -80,7 +81,7 @@ const FlavorTrailApp = () => {
     <div className="min-h-screen bg-gradient-warm">
       {/* Header */}
       <header className="bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
               <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
@@ -101,6 +102,12 @@ const FlavorTrailApp = () => {
               <Button variant="ghost" size="sm">
                 <Settings className="w-4 h-4" />
               </Button>
+              <img 
+                src="/ft.mascot.wo-bg.png" 
+                alt="FlavorTrail Mascot" 
+                className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
+                style={{ transform: 'scaleX(-1)' }}
+              />
             </div>
           </div>
         </div>
@@ -112,8 +119,8 @@ const FlavorTrailApp = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">
-                Welcome to FlavorTrail! 👋
+              <h1 className="text-3xl font-bold mb-2">
+                Welcome to <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>!
               </h1>
               <p className="text-muted-foreground">
                 {isGuest 
@@ -128,6 +135,29 @@ const FlavorTrailApp = () => {
             </div>
           </div>
         </div>
+
+        {/* World Map Exploration Section */}
+        <Card className="bg-gradient-card border-border/50 shadow-card mb-6">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="h-12 w-12 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
+                  <MapPin className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Explore World Cuisines</h3>
+                  <p className="text-sm text-muted-foreground">Discover food cultures from around the globe</p>
+                </div>
+              </div>
+              <Link to="/explore">
+                <Button variant="hero" size="sm">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Start Exploring
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Column - Daily Prompt & Quick Actions */}

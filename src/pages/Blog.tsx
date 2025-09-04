@@ -20,12 +20,20 @@ const Blog = () => {
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
-          <Link to="/">
-            <Button variant="outline" size="sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link to="/">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
+            </Link>
+            <img 
+              src="/ft.mascot.wo-bg.png" 
+              alt="FlavorTrail Mascot" 
+              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
+              style={{ transform: 'scaleX(-1)' }}
+            />
+          </div>
         </nav>
       </header>
 

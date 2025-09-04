@@ -47,7 +47,7 @@ const Premium = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
+    <div className="min-h-screen bg-gradient-warm">
       {/* Navigation Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between mb-8">
@@ -57,42 +57,50 @@ const Premium = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span>
-              <span className="text-sm text-white/80">Cook. Curiously.</span>
+              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
           </Link>
-          <Link to="/">
-            <Button variant="outline" size="sm" className="border-white text-white hover:bg-white/10 bg-white/20">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link to="/">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
+            </Link>
+            <img 
+              src="/ft.mascot.wo-bg.png" 
+              alt="FlavorTrail Mascot" 
+              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
+              style={{ transform: 'scaleX(-1)' }}
+            />
+          </div>
         </nav>
       </header>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12 lg:py-16 text-center">
         <div className="space-y-6 max-w-4xl mx-auto">
-          <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm">
+          <Badge className="bg-flavor-warm text-flavor-spice border-flavor-spice/30">
             <Crown className="w-4 h-4 mr-2" />
             Premium Experience
           </Badge>
-          <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-white drop-shadow-lg">
-            <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent drop-shadow-md">
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-foreground">
+            <span className="bg-gradient-hero bg-clip-text text-transparent">
               Premium
             </span> Features
             <br />
             Coming Soon
           </h1>
-          <p className="text-xl text-white max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Get early access to premium features and help shape the future of FlavorTrail. 
             Join our waitlist to be the first to experience the full culinary adventure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="text-lg px-8 py-6 bg-white text-flavor-spice hover:bg-white/90 shadow-lg">
+            <Button variant="hero" size="lg" className="text-lg px-8 py-6">
               Join Waitlist
             </Button>
             <Link to="/pricing">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-white text-white hover:bg-white/10 backdrop-blur-sm bg-white/20">
+              <Button variant="warm" size="lg" className="text-lg px-8 py-6">
                 View Pricing
               </Button>
             </Link>
