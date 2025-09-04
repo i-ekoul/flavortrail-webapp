@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChefHat, ArrowLeft, MapPin, Utensils, Star, Pizza, Shrimp, Leaf, Zap, Soup, Croissant, Bird, Cherry } from 'lucide-react';
+import { ChefHat, ArrowLeft, MapPin, Utensils, Star, Pizza, Fish, Leaf, Zap, Soup, Croissant, Bird, Cherry, Beef, Apple, Grape, Cookie, Wheat } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
+import Footer from '../components/Footer';
 
 interface CountryData {
   name: string;
@@ -36,7 +37,7 @@ const countryData: Record<string, CountryData> = {
     name: "Korea",
     capital: "Seoul",
     culturalName: "Korean",
-    icon: Shrimp,
+    icon: Fish,
     popularDishes: ["Kimchi", "Bulgogi", "Bibimbap", "Korean BBQ"],
     famousSpices: ["Gochujang", "Sesame Oil", "Garlic", "Soy Sauce"],
     foodCulture: "Korean cuisine is known for its bold flavors, fermented foods, and emphasis on balance. The concept of 'yin and yang' is reflected in the harmony of flavors and colors in every meal.",
@@ -62,7 +63,7 @@ const countryData: Record<string, CountryData> = {
     name: "Mexico",
     capital: "Mexico City",
     culturalName: "Mexican",
-    icon: Zap,
+    icon: Wheat,
     popularDishes: ["Tacos", "Mole", "Chiles Rellenos", "Guacamole"],
     famousSpices: ["Chipotle", "Cumin", "Cilantro", "Lime"],
     foodCulture: "Mexican cuisine is a UNESCO World Heritage. It's built on corn, beans, and chili peppers, with complex flavors developed over thousands of years.",
@@ -110,22 +111,22 @@ const countryData: Record<string, CountryData> = {
       description: "A Beijing specialty featuring crispy duck skin served with thin pancakes, hoisin sauce, and scallions. It's a dish that requires precise technique and timing."
     }
   },
-  morocco: {
-    name: "Morocco",
-    capital: "Rabat",
-    culturalName: "Moroccan",
-    icon: Cherry,
-    popularDishes: ["Tagine", "Couscous", "Harira", "Pastilla"],
-    famousSpices: ["Ras el Hanout", "Cumin", "Cinnamon", "Saffron"],
-    foodCulture: "Moroccan cuisine is a beautiful blend of Berber, Arab, and Mediterranean influences. It's known for its complex spice blends, slow-cooked tagines, and the art of combining sweet and savory flavors.",
+  nigeria: {
+    name: "Nigeria",
+    capital: "Abuja",
+    culturalName: "Nigerian",
+    icon: Beef,
+    popularDishes: ["Jollof Rice", "Egusi Soup", "Pounded Yam", "Suya"],
+    famousSpices: ["Cayenne Pepper", "Ginger", "Garlic", "Curry Powder"],
+    foodCulture: "Nigerian cuisine is incredibly diverse, reflecting the country's many ethnic groups. It's known for its bold flavors, rich stews, and the perfect balance of heat, spice, and depth in every dish.",
     sampleDish: {
-      name: "Chicken Tagine with Preserved Lemons",
-      description: "A slow-cooked stew with tender chicken, preserved lemons, olives, and aromatic spices. The tagine cooking method creates incredibly tender meat and rich, complex flavors."
+      name: "Jollof Rice",
+      description: "A one-pot rice dish cooked in a rich tomato sauce with onions, peppers, and aromatic spices. Often called the 'king of rice dishes' in West Africa, it's a celebration of flavor and tradition."
     }
   }
 };
 
-const WorldMap: React.FC = () => {
+const Explore: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -284,16 +285,24 @@ const WorldMap: React.FC = () => {
               </div>
 
               <div className="flex justify-center pt-4">
-                <Button onClick={closeModal} className="bg-gradient-hero text-white">
-                  Continue Exploring
+                <Button onClick={closeModal} className="bg-gray-400 text-white cursor-not-allowed" disabled>
+                  🚧 Explore More {selectedCountryData?.culturalName} Cuisine (Coming Soon)
                 </Button>
+              </div>
+              <div className="text-center pt-2">
+                <span className="text-xs text-muted-foreground">
+                  This feature is currently under development
+                </span>
               </div>
             </div>
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
 
-export default WorldMap;
+export default Explore;

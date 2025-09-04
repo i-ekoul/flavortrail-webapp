@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Sparkles, 
   Map, 
+  MapPin,
   BookOpen, 
   Trophy, 
   Users, 
@@ -133,7 +134,7 @@ const FlavorTrailLanding = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/explore">
                 <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-                  <Play className="w-5 h-5 mr-2" />
+                  <MapPin className="w-5 h-5 mr-2" />
                   Start Exploring
                 </Button>
               </Link>
@@ -155,7 +156,7 @@ const FlavorTrailLanding = () => {
             </div>
 
             {/* Sample Daily Prompt */}
-            <div className="mt-8 p-6 bg-background/50 rounded-2xl border border-border/30">
+            <div className="mt-8 p-6 bg-background/50 rounded-2xl border border-border/30 hover:bg-background/70 hover:border-flavor-spice/30 transition-all duration-300 cursor-pointer hover:shadow-lg">
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-8 h-8 bg-flavor-citrus rounded-full flex items-center justify-center">
                   <Sparkles className="w-4 h-4 text-white" />
@@ -192,10 +193,10 @@ const FlavorTrailLanding = () => {
       </section>
 
       {/* Why FlavorTrail Section */}
-      <section className="py-12 lg:py-16 bg-background">
+      <section className="py-8 lg:py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+          <div className="text-center space-y-3 mb-8">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
               Why <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail?</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -203,11 +204,11 @@ const FlavorTrailLanding = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">❌ The Old Way</h3>
-                <ul className="space-y-3 text-muted-foreground">
+              <CardContent className="p-5">
+                <h3 className="text-xl font-semibold text-foreground mb-3">❌ The Old Way</h3>
+                <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start space-x-2">
                     <span className="text-red-500 mt-1">•</span>
                     <span>Overwhelming recipe lists with 20+ ingredients</span>
@@ -229,9 +230,9 @@ const FlavorTrailLanding = () => {
             </Card>
 
             <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">✅ The <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span> Way</h3>
-                <ul className="space-y-3 text-muted-foreground">
+              <CardContent className="p-5">
+                <h3 className="text-xl font-semibold text-foreground mb-3">✅ The <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail</span> Way</h3>
+                <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start space-x-2">
                     <span className="text-green-500 mt-1">•</span>
                     <span>Bite-sized daily prompts that spark curiosity</span>

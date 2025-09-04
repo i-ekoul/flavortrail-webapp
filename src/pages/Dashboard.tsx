@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import { getGuestProgress, updateGuestProgress, completeChallenge, updateStreak, type GuestProgress } from "@/lib/guestStorage";
 import Footer from "@/components/Footer";
 
-const FlavorTrailApp = () => {
+const Dashboard = () => {
   const [userProgress, setUserProgress] = useState<GuestProgress>(getGuestProgress());
   const [isGuest, setIsGuest] = useState(true);
 
@@ -80,7 +80,7 @@ const FlavorTrailApp = () => {
   return (
     <div className="min-h-screen bg-gradient-warm">
       {/* Header */}
-      <header className="bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
+      <header className="bg-background/80 backdrop-blur-sm border-b border-border/50">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
@@ -136,32 +136,31 @@ const FlavorTrailApp = () => {
           </div>
         </div>
 
-        {/* World Map Exploration Section */}
-        <Card className="bg-gradient-card border-border/50 shadow-card mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="h-12 w-12 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
-                  <MapPin className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Explore World Cuisines</h3>
-                  <p className="text-sm text-muted-foreground">Discover food cultures from around the globe</p>
-                </div>
-              </div>
-              <Link to="/explore">
-                <Button variant="hero" size="sm">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  Start Exploring
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Column - Daily Prompt & Quick Actions */}
           <div className="lg:col-span-2 space-y-6">
+            {/* World Map Exploration Section */}
+            <Card className="bg-gradient-card border-border/50 shadow-card">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="h-12 w-12 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Explore World Cuisines</h3>
+                      <p className="text-sm text-muted-foreground">Discover food cultures from around the globe</p>
+                    </div>
+                  </div>
+                  <Link to="/explore">
+                    <Button variant="hero" size="sm">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Start Exploring
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
             {/* Today's Daily Prompt */}
             <Card className="bg-gradient-card border-border/50 shadow-card">
               <CardHeader>
@@ -225,7 +224,8 @@ const FlavorTrailApp = () => {
                         </Badge>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm">
+                    <Button variant="hero" size="sm">
+                      <Play className="w-4 h-4 mr-2" />
                       Start Quest
                     </Button>
                   </div>
@@ -329,4 +329,4 @@ const FlavorTrailApp = () => {
   );
 };
 
-export default FlavorTrailApp;
+export default Dashboard;
