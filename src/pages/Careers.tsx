@@ -1,159 +1,126 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Heart, Code, Palette } from "lucide-react";
+import { MapPin, Clock, ChefHat, Coffee, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 const Careers = () => {
-  const openPositions = [
+  const openPositions = [];
+
+  const team = [
     {
-      title: "Senior React Developer",
-      department: "Engineering",
-      location: "Remote",
-      type: "Full-time",
-      description: "Help us build the future of culinary education with React, TypeScript, and modern web technologies."
+      name: "Emmalie Cole",
+      role: "Founder & Head Chef",
+      description: "Passionate culinary educator and entrepreneur dedicated to making cooking accessible, fun, and adventurous for home cooks everywhere.",
+      icon: ChefHat
     },
     {
-      title: "UX/UI Designer",
-      department: "Design",
-      location: "San Francisco, CA",
-      type: "Full-time",
-      description: "Design intuitive and delightful experiences that make cooking accessible to everyone."
-    },
-    {
-      title: "Culinary Content Creator",
-      department: "Content",
-      location: "Remote",
-      type: "Contract",
-      description: "Create engaging educational content and flavor quests that inspire home cooks worldwide."
-    },
-    {
-      title: "iOS Developer",
-      department: "Engineering",
-      location: "Remote",
-      type: "Full-time",
-      description: "Build and optimize our iOS app to deliver seamless mobile cooking experiences."
+      name: "Stanislav Prygunov",
+      role: "Co-Founder & Experience Architect",
+      description: "Visionary quality strategist dedicated to crafting magical user experiences that make every cooking moment feel delightful and effortless.",
+      icon: Coffee
     }
   ];
 
-  const values = [
-    {
-      icon: Heart,
-      title: "Passion for Food",
-      description: "We believe food brings people together and cooking should be joyful"
-    },
-    {
-      icon: Users,
-      title: "Inclusive Culture",
-      description: "We celebrate diverse perspectives and create belonging for everyone"
-    },
-    {
-      icon: Code,
-      title: "Innovation First",
-      description: "We use cutting-edge technology to solve real problems in creative ways"
-    },
-    {
-      icon: Palette,
-      title: "Craft Excellence",
-      description: "We take pride in building beautiful, thoughtful products that users love"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-warm">
+      {/* Navigation Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex items-center justify-between mb-8">
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
+              <ChefHat className="h-8 w-8 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground">FlavorTrail</span>
+              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
+            </div>
+          </Link>
+          <Link to="/">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </nav>
+      </header>
+
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
+      <section className="container mx-auto px-4 py-12 lg:py-16">
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
           <Badge className="bg-flavor-warm text-flavor-spice">
-            🍳 We're Hiring
+            🍳 Our Team
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-            Help Us Make Cooking
+            Meet the People Making Cooking
             <span className="bg-gradient-hero bg-clip-text text-transparent"> Accessible </span>
             to Everyone
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join our passionate team of food lovers, designers, and engineers as we build 
-            the future of culinary education. Remote-first culture with opportunities worldwide.
+            Learn about our passionate team of food lovers, designers, and engineers who are building 
+            the future of culinary education. We're not currently hiring, but we love connecting with fellow food enthusiasts!
           </p>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="container mx-auto px-4 py-16 bg-background">
-        <div className="text-center space-y-4 mb-16">
+      {/* Team Section */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center space-y-4 mb-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-            Our Values
+            Meet the Team
           </h2>
-          <p className="text-lg text-muted-foreground">
-            What drives us every day
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            The passionate people behind FlavorTrail
           </p>
         </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => (
-            <Card key={index} className="bg-gradient-card border-border/50 shadow-card hover:shadow-warm transition-all duration-300">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-warm flex items-center justify-center mx-auto">
-                  <value.icon className="w-8 h-8 text-flavor-spice" />
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {team.map((member, index) => (
+            <Card key={index} className="bg-gradient-card border-border/50 shadow-card">
+              <CardContent className="p-8 space-y-6">
+                <div className="w-20 h-20 rounded-full bg-gradient-warm flex items-center justify-center mx-auto">
+                  <member.icon className="w-10 h-10 text-flavor-spice" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
+                  <p className="text-flavor-spice font-medium mb-3">{member.role}</p>
+                  <p className="text-muted-foreground leading-relaxed">{member.description}</p>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Open Positions */}
+
+      {/* No Open Positions */}
       <section className="container mx-auto px-4 py-16">
-        <div className="text-center space-y-4 mb-16">
+        <div className="text-center space-y-8 max-w-2xl mx-auto">
           <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-            Open Positions
+            No Open Positions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Find your next opportunity with us
+            We're not currently hiring, but we're always excited to connect with passionate food enthusiasts and talented individuals who share our vision.
           </p>
-        </div>
-
-        <div className="space-y-6 max-w-4xl mx-auto">
-          {openPositions.map((position, index) => (
-            <Card key={index} className="bg-gradient-card border-border/50 shadow-card hover:shadow-warm transition-all duration-300">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div className="space-y-2">
-                    <CardTitle className="text-xl text-foreground">{position.title}</CardTitle>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary" className="bg-flavor-warm text-flavor-spice">
-                        {position.department}
-                      </Badge>
-                      <div className="flex items-center text-muted-foreground text-sm">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {position.location}
-                      </div>
-                      <div className="flex items-center text-muted-foreground text-sm">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {position.type}
-                      </div>
-                    </div>
-                  </div>
-                  <Button variant="spice">Apply Now</Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{position.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+          <Card className="bg-gradient-card border-border/50 shadow-card">
+            <CardContent className="p-8 text-center space-y-4">
+              <h3 className="text-xl font-semibold text-foreground">Stay in Touch</h3>
+              <p className="text-muted-foreground">
+                Follow us on social media or reach out through our contact page. When we're ready to grow our team, we'll be sure to share the news!
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="container mx-auto px-4 py-16 bg-background">
-        <div className="text-center space-y-8 max-w-3xl mx-auto">
+      <section className="container mx-auto px-4 py-12 bg-background">
+        <div className="text-center space-y-6 max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-foreground">
             Why Join FlavorTrail?
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 text-left">
+          <div className="grid md:grid-cols-4 gap-6 text-left">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">💰 Competitive Benefits</h3>
               <ul className="space-y-2 text-muted-foreground">
@@ -198,17 +165,18 @@ const Careers = () => {
       <section className="container mx-auto px-4 py-16">
         <div className="text-center space-y-8 max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-foreground">
-            Don't See a Perfect Fit?
+            Love What We're Building?
           </h2>
           <p className="text-lg text-muted-foreground">
-            We're always looking for talented people who share our passion for making cooking accessible. 
-            Send us your resume and tell us how you'd like to contribute!
+            We'd love to connect with fellow food enthusiasts! Follow our journey and stay updated on FlavorTrail's development.
           </p>
-          <Button variant="spice" size="lg" className="text-lg px-8 py-6">
-            Send Us Your Resume
-          </Button>
+                            <Button variant="spice" size="lg" className="text-lg px-8 py-6">
+                    Stay Connected
+                  </Button>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

@@ -11,12 +11,14 @@ import {
   ChefHat,
   Zap,
   Heart,
-  Download,
   Play,
-  Check
+  Check,
+  Mail
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-cooking.jpg";
-import henrietta from "@/assets/henrietta.png";
+import appExamples from "@/assets/appExamples.png";
+import Footer from "@/components/Footer";
 
 const FlavorTrailLanding = () => {
   const features = [
@@ -46,32 +48,32 @@ const FlavorTrailLanding = () => {
     }
   ];
 
-  const testimonials = [
+  const visionFeedback = [
     {
-      name: "Sarah M.",
-      role: "Home Cook",
-      content: "FlavorTrail turned my kitchen anxiety into kitchen adventure! I actually look forward to cooking now.",
+      name: "Culinary Educator",
+      role: "Professional Chef",
+      content: "This approach to cooking education is exactly what the industry needs - making culinary skills accessible and fun for everyone.",
       rating: 5
     },
     {
-      name: "David K.",
-      role: "Food Enthusiast",
-      content: "Like Duolingo but for cooking! The daily prompts keep me experimenting with new flavors.",
+      name: "Food Blogger",
+      role: "Content Creator",
+      content: "The concept of gamified cooking learning is brilliant. It's like Duolingo meets the kitchen - I can't wait to see it in action!",
       rating: 5
     },
     {
-      name: "Maria L.",
-      role: "Busy Parent",
-      content: "Perfect bite-sized lessons that fit into my schedule. My kids love the quest badges!",
+      name: "Parent & Home Cook",
+      role: "Community Member",
+      content: "As someone who struggles with cooking confidence, this vision gives me hope that cooking can become an adventure rather than a chore.",
       rating: 5
     }
   ];
 
   const stats = [
-    { number: "50K+", label: "Active Users" },
-    { number: "1M+", label: "Dishes Explored" },
-    { number: "4.8★", label: "App Rating" },
-    { number: "150+", label: "Flavor Quests" }
+    { number: "Coming Soon", label: "Alpha Launch" },
+    { number: "100%", label: "Free to Start" },
+    { number: "24/7", label: "Web Access" },
+    { number: "∞", label: "Culinary Adventures" }
   ];
 
   return (
@@ -79,7 +81,7 @@ const FlavorTrailLanding = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
               <ChefHat className="h-8 w-8 text-white" />
             </div>
@@ -87,24 +89,27 @@ const FlavorTrailLanding = () => {
               <span className="text-xl font-bold text-foreground">FlavorTrail</span>
               <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
             </div>
-          </div>
+          </Link>
           <div className="hidden md:flex items-center space-x-6">
             <a href="#features" className="text-foreground hover:text-flavor-spice transition-colors">Features</a>
             <a href="#how-it-works" className="text-foreground hover:text-flavor-spice transition-colors">How it Works</a>
             <a href="#testimonials" className="text-foreground hover:text-flavor-spice transition-colors">Reviews</a>
-            <Button variant="spice" size="sm">Download App</Button>
+            <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+              <Play className="w-5 h-5 mr-2" />
+              Start Cooking
+            </Button>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+      <section className="container mx-auto px-4 py-12 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="space-y-6">
             <div className="space-y-4">
-              <Badge variant="secondary" className="bg-flavor-warm text-flavor-spice">
-                🌶️ Now in Beta - Join the Culinary Adventure
-              </Badge>
+                                    <Badge variant="secondary" className="bg-flavor-warm text-flavor-spice">
+                        🌶️ Now in Development
+                      </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
                 Develop an 
                 <span className="bg-gradient-hero bg-clip-text text-transparent"> Intuitive </span>
@@ -119,22 +124,42 @@ const FlavorTrailLanding = () => {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-                <Download className="w-5 h-5 mr-2" />
-                Download for Free
+                <Mail className="w-5 h-5 mr-2" />
+                Join the Wait
               </Button>
               <Button variant="warm" size="lg" className="text-lg px-8 py-6">
-                <Play className="w-5 h-5 mr-2" />
-                Watch Demo
+                <BookOpen className="w-5 h-5 mr-2" />
+                Learn More
               </Button>
             </div>
 
-            <div className="flex items-center space-x-8 pt-4">
+            <div className="flex items-center space-x-6 pt-2">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-2xl font-bold text-flavor-spice">{stat.number}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Sample Daily Prompt */}
+            <div className="mt-8 p-6 bg-background/50 rounded-2xl border border-border/30">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-8 h-8 bg-flavor-citrus rounded-full flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-sm font-medium text-flavor-spice">Today's Sample Prompt</span>
+              </div>
+              <p className="text-foreground font-medium">
+                "Use a fruit in a savory dish you've never tried before. What unexpected flavor combination will you discover?"
+              </p>
+              <div className="mt-3 flex items-center space-x-2 text-sm text-muted-foreground">
+                <span>⏱️ 2 min challenge</span>
+                <span>•</span>
+                <span>🎯 Creativity boost</span>
+                <span>•</span>
+                <span>📚 Learn as you cook</span>
+              </div>
             </div>
           </div>
           
@@ -154,10 +179,74 @@ const FlavorTrailLanding = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-16 lg:py-24 bg-background">
+      {/* Why FlavorTrail Section */}
+      <section className="py-12 lg:py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+              Why <span className="bg-gradient-hero bg-clip-text text-transparent">FlavorTrail?</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Traditional cooking education is overwhelming. We make it simple, fun, and achievable.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+            <Card className="bg-gradient-card border-border/50 shadow-card">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-4">❌ The Old Way</h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start space-x-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>Overwhelming recipe lists with 20+ ingredients</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>Complex meal planning that feels like homework</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>All-or-nothing approach that leads to burnout</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-red-500 mt-1">•</span>
+                    <span>No guidance on building cooking intuition</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-card border-border/50 shadow-card">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-4">✅ The FlavorTrail Way</h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start space-x-2">
+                    <span className="text-green-500 mt-1">•</span>
+                    <span>Bite-sized daily prompts that spark curiosity</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-green-500 mt-1">•</span>
+                    <span>Gamified learning that feels like play</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-green-500 mt-1">•</span>
+                    <span>Progressive skill building at your own pace</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-green-500 mt-1">•</span>
+                    <span>Learn-as-you-go approach that builds confidence</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-12 lg:py-16 bg-gradient-warm">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
               Your Culinary Adventure Starts Here
             </h2>
@@ -167,7 +256,7 @@ const FlavorTrailLanding = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <Card key={index} className="bg-gradient-card border-border/50 shadow-card hover:shadow-warm transition-all duration-300">
                 <CardContent className="p-6 text-center space-y-4">
@@ -184,18 +273,18 @@ const FlavorTrailLanding = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 lg:py-24 bg-gradient-warm">
+      <section id="how-it-works" className="py-12 lg:py-16 bg-gradient-warm">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="relative">
               <img 
-                src={henrietta} 
-                alt="Henrietta, the FlavorTrail mascot" 
+                src={appExamples} 
+                alt="FlavorTrail app examples and features" 
                 className="w-full rounded-2xl shadow-card"
               />
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4">
                   Simple. Fun. Effective.
@@ -206,7 +295,7 @@ const FlavorTrailLanding = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {[
                   {
                     step: "1",
@@ -240,31 +329,82 @@ const FlavorTrailLanding = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 lg:py-24 bg-background">
+      {/* Development Timeline */}
+      <section className="py-12 lg:py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
+          <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-              What Our Food Adventurers Say
+              Our <span className="bg-gradient-hero bg-clip-text text-transparent">Development</span> Journey
             </h2>
             <p className="text-lg text-muted-foreground">
-              Join thousands of home cooks discovering their culinary confidence
+              Follow our progress as we build the future of culinary education
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="bg-gradient-card border-border/50 shadow-card">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
+                    <Check className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">Phase 1: Foundation</h3>
+                  <p className="text-muted-foreground">Core concept, design system, and user research completed</p>
+                  <Badge className="bg-green-100 text-green-800">Completed</Badge>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card border-border/50 shadow-card">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-flavor-citrus flex items-center justify-center mx-auto">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">Phase 2: Alpha Testing</h3>
+                  <p className="text-muted-foreground">Web app development, core features, and early user testing</p>
+                  <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card border-border/50 shadow-card">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-flavor-herb flex items-center justify-center mx-auto">
+                    <Trophy className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">Phase 3: Beta & Mobile</h3>
+                  <p className="text-muted-foreground">Beta testing, iOS/Android apps, and community features</p>
+                  <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Feedback Section */}
+      <section id="testimonials" className="py-12 lg:py-16 bg-gradient-warm">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+              What People Are Saying About Our Vision
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Early feedback from culinary professionals and food enthusiasts
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {visionFeedback.map((feedback, index) => (
               <Card key={index} className="bg-gradient-card border-border/50 shadow-card">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(feedback.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-flavor-citrus text-flavor-citrus" />
                     ))}
                   </div>
-                  <p className="text-foreground italic">"{testimonial.content}"</p>
+                  <p className="text-foreground italic">"{feedback.content}"</p>
                   <div>
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div className="font-semibold text-foreground">{feedback.name}</div>
+                    <div className="text-sm text-muted-foreground">{feedback.role}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -273,36 +413,43 @@ const FlavorTrailLanding = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-hero">
+      {/* Join the Waitlist Section */}
+      <section className="py-12 lg:py-16 bg-gradient-hero">
         <div className="container mx-auto px-4 text-center">
-          <div className="space-y-8 max-w-3xl mx-auto">
+          <div className="space-y-6 max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold text-white">
               Ready to Transform Your Cooking?
             </h2>
             <p className="text-xl text-white/90">
-              Join the culinary adventure today. Free to start, premium features available.
+              Join the waitlist and be the first to experience FlavorTrail when we launch.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button variant="secondary" size="lg" className="text-lg px-8 py-6 bg-white text-flavor-spice hover:bg-white/90">
-                <Download className="w-5 h-5 mr-2" />
-                Download for iOS
-              </Button>
-              <Button variant="secondary" size="lg" className="text-lg px-8 py-6 bg-white text-flavor-spice hover:bg-white/90">
-                <Download className="w-5 h-5 mr-2" />
-                Download for Android
-              </Button>
+            {/* Waitlist Signup */}
+            <div className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 rounded-lg border-0 text-foreground placeholder-muted-foreground"
+                />
+                <Button variant="secondary" size="lg" className="bg-white text-flavor-spice hover:bg-white/90 px-6">
+                  Join Waitlist
+                </Button>
+              </div>
+              <p className="text-sm text-white/70 mt-3">
+                No spam, just updates on our progress. Unsubscribe anytime.
+              </p>
             </div>
 
-            <div className="flex items-center justify-center space-x-4 text-white/80">
+            {/* Trust Signals */}
+            <div className="flex items-center justify-center space-x-6 text-white/80">
               <div className="flex items-center space-x-2">
                 <Check className="w-5 h-5" />
-                <span>Free daily prompts</span>
+                <span>Free to start</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Check className="w-5 h-5" />
-                <span>No signup required</span>
+                <span>Early access</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Check className="w-5 h-5" />
@@ -313,58 +460,7 @@ const FlavorTrailLanding = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 bg-foreground text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
-            </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-bold text-white">FlavorTrail</span>
-                  <span className="text-sm text-white/70">Cook. Curiously.</span>
-                </div>
-              </div>
-              <p className="text-white/70">
-                Making cooking an adventure, one quest at a time.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-white/70">
-                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="/premium" className="hover:text-white transition-colors">Premium</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-white/70">
-                <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-white/70">
-                <li><a href="/help" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="/privacy" className="hover:text-white transition-colors">Privacy</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-white/70">
-            <p>&copy; 2024 FlavorTrail. All rights reserved. Made with ❤️ for food adventurers.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -3,23 +3,46 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Clock, ChefHat, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-warm">
+      {/* Navigation Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex items-center justify-between mb-8">
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
+              <ChefHat className="h-8 w-8 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground">FlavorTrail</span>
+              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
+            </div>
+          </Link>
+          <Link to="/">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </nav>
+      </header>
+
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
           <Badge className="bg-flavor-warm text-flavor-spice">
             💬 Get in Touch
           </Badge>
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
-            We'd Love to Hear From You
+            We'd Love to <span className="bg-gradient-hero bg-clip-text text-transparent">Hear From You</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have questions, feedback, or just want to share your cooking journey? 
-            Reach out to us and we'll get back to you as soon as possible.
+            Share your feedback, report issues, or tell us about your culinary adventures. 
+            We love hearing from our community and personally respond to every message.
           </p>
         </div>
       </section>
@@ -30,7 +53,7 @@ const Contact = () => {
           {/* Contact Form */}
           <Card className="bg-gradient-card border-border/50 shadow-card">
             <CardHeader>
-              <CardTitle className="text-2xl text-foreground">Send Us a Message</CardTitle>
+              <CardTitle className="text-2xl text-foreground">Share Your Thoughts</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
@@ -51,13 +74,13 @@ const Contact = () => {
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Subject</label>
-                <Input placeholder="What's this about?" />
+                <Input placeholder="Feedback, bug report, or just saying hi!" />
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Message</label>
                 <Textarea 
-                  placeholder="Tell us more about your question or feedback..." 
+                  placeholder="Tell us about your cooking journey, share feedback, or let us know how we can improve..." 
                   className="min-h-32"
                 />
               </div>
@@ -72,7 +95,7 @@ const Contact = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">
-                Other Ways to Reach Us
+                Connect With Us
               </h2>
             </div>
 
@@ -83,9 +106,9 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-flavor-spice" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">Email Support</h3>
-                    <p className="text-muted-foreground">support@flavortrail.com</p>
-                    <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
+                    <h3 className="text-lg font-semibold text-foreground">Direct Email</h3>
+                    <p className="text-muted-foreground">support@flavortrail.co</p>
+                    <p className="text-sm text-muted-foreground">For detailed questions and feedback</p>
                   </div>
                 </div>
 
@@ -94,20 +117,9 @@ const Contact = () => {
                     <MessageCircle className="w-6 h-6 text-flavor-spice" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">Live Chat</h3>
-                    <p className="text-muted-foreground">Available in the app</p>
-                    <p className="text-sm text-muted-foreground">Monday - Friday, 9 AM - 6 PM PST</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-warm flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-flavor-spice" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">Office</h3>
-                    <p className="text-muted-foreground">123 Culinary Street</p>
-                    <p className="text-muted-foreground">San Francisco, CA 94105</p>
+                    <h3 className="text-lg font-semibold text-foreground">Quick Message</h3>
+                    <p className="text-muted-foreground">Use the form on this page</p>
+                    <p className="text-sm text-muted-foreground">Perfect for sharing stories and ideas</p>
                   </div>
                 </div>
 
@@ -116,23 +128,23 @@ const Contact = () => {
                     <Clock className="w-6 h-6 text-flavor-spice" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">Business Hours</h3>
-                    <p className="text-muted-foreground">Monday - Friday: 9 AM - 6 PM PST</p>
-                    <p className="text-muted-foreground">Weekend: Limited support</p>
+                    <h3 className="text-lg font-semibold text-foreground">Our Team</h3>
+                    <p className="text-muted-foreground">Small founding team</p>
+                    <p className="text-sm text-muted-foreground">Personal attention guaranteed</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* FAQ Link */}
+            {/* Community Link */}
             <Card className="bg-gradient-hero text-white border-0">
               <CardContent className="p-6 text-center space-y-4">
-                <h3 className="text-xl font-semibold">Looking for Quick Answers?</h3>
+                <h3 className="text-xl font-semibold">Join Our Community</h3>
                 <p className="text-white/90">
-                  Check out our Help Center for instant answers to common questions.
+                  Follow our journey and connect with fellow food enthusiasts as we build FlavorTrail together.
                 </p>
                 <Button variant="secondary" className="bg-white text-flavor-spice hover:bg-white/90">
-                  Visit Help Center
+                  Join Our Community
                 </Button>
               </CardContent>
             </Card>
@@ -140,28 +152,36 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Response Time */}
-      <section className="container mx-auto px-4 py-16 bg-background">
-        <div className="text-center space-y-8 max-w-3xl mx-auto">
+      {/* Community Focus */}
+      <section className="container mx-auto px-4 py-12 bg-background">
+        <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-foreground">
-            We're Here to Help
+            Building Together
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-flavor-spice mb-2">&lt; 2 hours</div>
-              <div className="text-muted-foreground">Average response time</div>
+              <div className="text-3xl font-bold text-flavor-spice mb-2">Your Voice</div>
+              <div className="text-muted-foreground">Matters to us</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-flavor-spice mb-2">24/7</div>
-              <div className="text-muted-foreground">Email support available</div>
+              <div className="text-3xl font-bold text-flavor-spice mb-2">Real People</div>
+              <div className="text-muted-foreground">Behind every response</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-flavor-spice mb-2">98%</div>
-              <div className="text-muted-foreground">Customer satisfaction</div>
+              <div className="text-3xl font-bold text-flavor-spice mb-2">Growing</div>
+              <div className="text-muted-foreground">Community together</div>
             </div>
+          </div>
+          <div className="mt-8 p-6 bg-gradient-warm rounded-lg">
+            <p className="text-muted-foreground">
+              Every message you send helps us understand what you need and how we can make FlavorTrail better. 
+              Your feedback shapes our roadmap and your stories inspire our mission.
+            </p>
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };
