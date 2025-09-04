@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Food-inspired color palette */
+    --background: 28 40% 98%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    /* Warm spice primary - paprika/chili inspired */
+    --primary: 14 88% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Warm cream secondary */
+    --secondary: 25 40% 94%;
+    --secondary-foreground: 20 14.3% 4.1%;
+
+    --muted: 25 40% 94%;
+    --muted-foreground: 25 5.3% 44.7%;
+
+    /* Saffron accent */
+    --accent: 45 93% 58%;
+    --accent-foreground: 20 14.3% 4.1%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 27% 88%;
+    --input: 25 27% 88%;
+    --ring: 14 88% 55%;
+
+    /* Custom FlavorTrail colors */
+    --flavor-spice: 14 88% 55%;
+    --flavor-herb: 95 38% 62%;
+    --flavor-citrus: 45 93% 58%;
+    --flavor-berry: 340 82% 52%;
+    --flavor-warm: 25 40% 94%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(14 88% 55%) 0%, hsl(340 82% 52%) 50%, hsl(45 93% 58%) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(28 40% 98%) 0%, hsl(25 40% 94%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(25 40% 96%) 100%);
+    
+    /* Shadows with warm tones */
+    --shadow-warm: 0 4px 20px -4px hsl(14 88% 55% / 0.15);
+    --shadow-glow: 0 0 40px hsl(45 93% 58% / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(20 14.3% 4.1% / 0.1);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 210 40% 98%;
+
+    --card: 24 9.8% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 24 9.8% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 14 88% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 24 9.8% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 14 88% 55%;
+
+    /* FlavorTrail dark mode colors */
+    --flavor-spice: 14 88% 55%;
+    --flavor-herb: 95 38% 62%;
+    --flavor-citrus: 45 93% 58%;
+    --flavor-berry: 340 82% 52%;
+    --flavor-warm: 240 3.7% 15.9%;
+    
+    /* Dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(14 88% 55%) 0%, hsl(340 82% 52%) 50%, hsl(45 93% 58%) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(20 14.3% 4.1%) 0%, hsl(24 9.8% 10%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(24 9.8% 10%) 0%, hsl(240 3.7% 15.9%) 100%);
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
