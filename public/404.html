@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FlavorTrail</title>
+    <title>FlavorTrail - Recipe Not Found</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -25,23 +25,159 @@
     <meta name="twitter:title" content="FlavorTrail - Cook. Curiously." />
     <meta name="twitter:description" content="Cook. Curiously." />
     <meta name="twitter:image" content="https://flavortrail.co/app-mockup.jpg" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #374151;
+      }
+      
+      .container {
+        text-align: center;
+        max-width: 500px;
+        padding: 2rem;
+      }
+      
+      .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ea580c 0%, #be185d 100%);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+      }
+      
+      .chef-hat {
+        width: 40px;
+        height: 40px;
+        fill: white;
+      }
+      
+      .error-code {
+        font-size: 6rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #ea580c 0%, #be185d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+      
+      .error-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+      
+      .error-message {
+        color: #6b7280;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #ea580c 0%, #be185d 100%);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        margin-bottom: 1rem;
+      }
+      
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+      }
+      
+      .tip {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(234, 88, 12, 0.2);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+      
+      .loading {
+        margin-top: 2rem;
+        color: #9ca3af;
+        font-size: 0.875rem;
+      }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="container">
+      <!-- FlavorTrail Logo -->
+      <div class="logo">
+        <svg class="chef-hat" viewBox="0 0 24 24">
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+        </svg>
+      </div>
+
+      <!-- 404 Content -->
+      <div class="error-code">404</div>
+      <h1 class="error-title">Recipe Not Found!</h1>
+      <p class="error-message">
+        Looks like this page got lost in the kitchen! The recipe you're looking for doesn't exist, 
+        but don't worry - we have plenty of other delicious adventures waiting for you.
+      </p>
+
+      <!-- Action Button -->
+      <a href="/" class="btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Pro Tip -->
+      <div class="tip">
+        💡 <strong>Pro tip:</strong> Try exploring our recipe collection or check out our cooking blog for inspiration!
+      </div>
+
+      <!-- Loading Message -->
+      <div class="loading">
+        Redirecting to FlavorTrail...
+      </div>
+    </div>
+
     <script>
       // GitHub Pages SPA redirect
       // This script redirects all 404s to index.html to let React Router handle routing
       var pathSegmentsToKeep = 0;
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      
+      // Show loading message
+      setTimeout(function() {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      }, 2000); // 2 second delay to show the custom 404 page
     </script>
   </body>
 </html>
