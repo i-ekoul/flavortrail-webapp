@@ -16,7 +16,7 @@ import {
   Check
 } from "lucide-react";
 import heroImage from "@/assets/hero-cooking.jpg";
-import appMockup from "@/assets/app-mockup.jpg";
+import henrietta from "@/assets/henrietta.png";
 
 const FlavorTrailLanding = () => {
   const features = [
@@ -189,8 +189,8 @@ const FlavorTrailLanding = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img 
-                src={appMockup} 
-                alt="FlavorTrail app mockup showing features" 
+                src={henrietta} 
+                alt="Henrietta, the FlavorTrail mascot" 
                 className="w-full rounded-2xl shadow-card"
               />
             </div>
