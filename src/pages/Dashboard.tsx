@@ -52,7 +52,7 @@ import QuickLessonPopup from "@/components/QuickLessonPopup";
 import { useTheme, type ColorTheme } from "@/contexts/ThemeContext";
 import { useSound } from "@/contexts/SoundContext";
 import { useFirebase } from "@/contexts/FirebaseContext";
-import { updateUserAvatar, updateUserDisplayName } from "@/lib/firebaseAuth";
+import { updateUserAvatar, updateUserDisplayName, signOutUser } from "@/lib/firebaseAuth";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -75,8 +75,27 @@ const Dashboard = () => {
   const { soundEnabled, toggleSound, playSound } = useSound();
 
   // Use Firebase progress if authenticated, otherwise use guest progress
-  const currentProgress = isAuthenticated ? firebaseProgress : guestProgress;
+  // Show fallback data while Firebase data loads for better UX
+  const currentProgress = isAuthenticated ? (firebaseProgress || {
+    level: 1,
+    experience: 0,
+    selectedAvatar: 'chef-hat',
+    completedQuests: 0,
+    currentStreak: 0,
+    lastActiveDate: new Date().toISOString().split('T')[0],
+    badges: [],
+    onboardingCompleted: true,
+    onboardingData: {
+      skillLevel: 'beginner',
+      interests: ['quick-meals'],
+      goals: ['learn-basics'],
+      timeCommitment: '15-minutes'
+    }
+  }) : guestProgress;
   const isGuest = !isAuthenticated;
+
+  // Show loading only if we're authenticated but don't have user data yet
+  const isLoading = isAuthenticated && loading;
 
   // Load guest progress on component mount (for guest users)
   useEffect(() => {
@@ -101,8 +120,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (isAuthenticated && userData?.displayName) {
       setLocalDisplayName(userData.displayName);
+    } else if (isAuthenticated && user?.displayName) {
+      // Fallback to Firebase Auth displayName if Firestore doesn't have it
+      setLocalDisplayName(user.displayName);
     }
-  }, [isAuthenticated, userData?.displayName]);
+  }, [isAuthenticated, userData?.displayName, user?.displayName]);
 
   const handleChallengeStart = (challengeId: string) => {
     if (isAuthenticated) {
@@ -198,6 +220,18 @@ const Dashboard = () => {
   const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
   const spotlightIndex = dayOfYear % flavorSpotlights.length;
 
+  // Show loading spinner only for authenticated users while Firebase data loads
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-warm flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-flavor-spice border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading your kitchen...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-warm">
       {/* Header */}
@@ -257,10 +291,10 @@ const Dashboard = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-3xl font-bold">
-                  Welcome to your <span className="text-brand">Kitchen</span>, {isGuest ? 'Chef' : (localDisplayName || userData?.displayName || 'Chef')}!
-                </h1>
+                          <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-3xl font-bold">
+                Welcome to your <span className="text-brand">Kitchen</span>, {isGuest ? 'Chef' : (localDisplayName || userData?.displayName || user?.displayName || user?.email?.split('@')[0] || 'Chef')}!
+              </h1>
                 {isGuest && (
                   <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800">
                     Guest Mode
@@ -731,7 +765,7 @@ const Dashboard = () => {
                         size="sm"
                         onClick={() => {
                           setEditingDisplayName(!editingDisplayName);
-                          setNewDisplayName(userData?.displayName || '');
+                          setNewDisplayName(localDisplayName || userData?.displayName || user?.displayName || '');
                         }}
                       >
                         {editingDisplayName ? 'Cancel' : 'Edit'}
@@ -790,7 +824,7 @@ const Dashboard = () => {
                       </div>
                     ) : (
                       <p className="text-foreground font-medium">
-                        {localDisplayName || userData?.displayName || 'No display name set'}
+                        {localDisplayName || userData?.displayName || user?.displayName || 'No display name set'}
                       </p>
                     )}
                   </div>
@@ -903,7 +937,18 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 ) : (
-                  <button className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors w-full text-left text-red-600">
+                  <button 
+                    onClick={async () => {
+                      try {
+                        await signOutUser();
+                        playSound('button-click');
+                        window.location.href = '/';
+                      } catch (error) {
+                        console.error('Error signing out:', error);
+                      }
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors w-full text-left text-red-600"
+                  >
                     <LogOut className="w-5 h-5" />
                     <div>
                       <p className="font-medium">Sign Out</p>

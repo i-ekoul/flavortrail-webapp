@@ -68,7 +68,7 @@ const Header = ({
                 {isAuthenticated && (
                   <div className="flex flex-col">
                     <span className="text-foreground font-medium text-sm">
-                      {userData?.displayName || user?.email}
+                      {userData?.displayName || user?.displayName || user?.email?.split('@')[0] || 'Chef'}
                     </span>
                     <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 text-xs w-fit mt-1">
                       Free Account
@@ -110,7 +110,7 @@ const Header = ({
                     {getAvatarById(userProgress?.selectedAvatar || 'chef-hat').emoji}
                   </div>
                   <span className="text-foreground font-medium">
-                    {userData?.displayName || user?.email}
+                    {userData?.displayName || user?.displayName || user?.email?.split('@')[0] || 'Chef'}
                   </span>
                 </div>
               </div>
