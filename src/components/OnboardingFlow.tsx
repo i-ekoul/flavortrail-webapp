@@ -233,7 +233,13 @@ const OnboardingFlow = ({ onComplete, onSkip }: OnboardingFlowProps) => {
           onboardingData: onboardingData
         });
         // Refresh user progress to update the context
-        refreshUserProgress();
+        await refreshUserProgress();
+        
+        // Wait a moment for the context to update, then redirect
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 500);
+        return;
       } else {
         // Save onboarding data to guest progress
         saveOnboardingData(onboardingData);
