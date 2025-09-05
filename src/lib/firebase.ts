@@ -5,13 +5,13 @@ import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAZHEH0PzPQr0ywjhSN6xQT6NPZlF703xM",
-  authDomain: "flavortrail-webapp.firebaseapp.com",
-  projectId: "flavortrail-webapp",
-  storageBucket: "flavortrail-webapp.firebasestorage.app",
-  messagingSenderId: "617303162758",
-  appId: "1:617303162758:web:7bc300edf259098d65f607",
-  measurementId: "G-FDM31VGWQH"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
