@@ -52,10 +52,6 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
       setUser(user);
       
       if (user) {
-        // Set loading to false immediately for authenticated users
-        // This allows the UI to show while data loads in background
-        setLoading(false);
-        
         try {
           // Load user data and progress from Firestore in parallel
           const [data, progress] = await Promise.all([
@@ -73,8 +69,10 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
       } else {
         setUserData(null);
         setUserProgress(null);
-        setLoading(false);
       }
+      
+      // Set loading to false after all operations complete
+      setLoading(false);
     });
 
     return () => unsubscribe();
