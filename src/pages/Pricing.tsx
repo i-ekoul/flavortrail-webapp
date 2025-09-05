@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, Star, Zap, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const Pricing = () => {
   const plans = [
@@ -62,40 +63,38 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center space-x-2">
-            <div className="h-8 w-8 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
-              <ChefHat className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-brand">
-              <span className="text-brand">FlavorTrail</span>
-            </span>
-          </Link>
-          <Link 
-            to="/" 
-            onClick={() => window.scrollTo(0, 0)}
-            className="inline-flex items-center gap-2 text-flavor-spice hover:text-flavor-berry transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </nav>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Home"
+        backButtonLink="/"
+      />
 
       {/* Page Header */}
-      <header className="container mx-auto px-4 py-6">
-        <div className="text-center space-y-4">
-          <Badge className="bg-flavor-warm text-flavor-spice mb-4">
+      <header className="container mx-auto px-4 py-12">
+        <div className="text-center space-y-6">
+          <Badge className="bg-gradient-to-r from-flavor-spice to-flavor-berry text-white px-6 py-2 text-sm font-medium">
             💰 Simple, Transparent Pricing
           </Badge>
-          <h1 className="text-4xl lg:text-6xl font-bold text-foreground">
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
             <span className="text-brand">Pricing</span> Plans
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Simple, transparent pricing for when we launch. Get early access for free during development.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Start your culinary journey for free. Premium features unlock as we grow together.
           </p>
+          <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
+            <div className="flex items-center space-x-2">
+              <Check className="w-4 h-4 text-flavor-spice" />
+              <span>No hidden fees</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Check className="w-4 h-4 text-flavor-spice" />
+              <span>Cancel anytime</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Check className="w-4 h-4 text-flavor-spice" />
+              <span>Free forever plan</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -170,69 +169,117 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Value Proposition */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div>
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Why Choose <span className="text-brand">FlavorTrail</span>?
+      {/* FAQ Section */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Frequently Asked Questions
             </h2>
             <p className="text-lg text-muted-foreground">
-              We're building the future of cooking education - one bite-sized lesson at a time
+              Everything you need to know about our pricing and features
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-flavor-spice rounded-full flex items-center justify-center mx-auto">
-                <ChefHat className="h-6 w-6 text-white" />
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  Is the free plan really free forever?
+                </h3>
+                <p className="text-muted-foreground">
+                  Yes! Our free plan includes core features like daily prompts, basic quests, and community access.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Gamified Learning</h3>
-              <p className="text-muted-foreground">Make cooking fun with quests, badges, and daily challenges</p>
+              
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  When will premium features be available?
+                </h3>
+                <p className="text-muted-foreground">
+                  FlavorTrail Plus launches in 2026, and Culinary Master in 2027.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  Can I cancel my subscription anytime?
+                </h3>
+                <p className="text-muted-foreground">
+                  Absolutely! Cancel anytime with no penalties or hidden fees.
+                </p>
+              </div>
             </div>
             
-            <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-flavor-citrus rounded-full flex items-center justify-center mx-auto">
-                <Zap className="h-6 w-6 text-white" />
+            <div className="space-y-4">
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  What's included in early access?
+                </h3>
+                <p className="text-muted-foreground">
+                  Free access to all features during development, plus direct input on new features.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Bite-Sized Lessons</h3>
-              <p className="text-muted-foreground">Learn at your own pace with 5-minute daily sessions</p>
-            </div>
-            
-            <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-flavor-berry rounded-full flex items-center justify-center mx-auto">
-                <Star className="h-6 w-6 text-white" />
+              
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  Do you offer student discounts?
+                </h3>
+                <p className="text-muted-foreground">
+                  Yes! Students with valid .edu emails get 50% off premium plans.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Community Driven</h3>
-              <p className="text-muted-foreground">Connect with fellow food adventurers and share discoveries</p>
+              
+              <div className="bg-white rounded-lg p-5 shadow-sm border border-border/50">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  How does the community feature work?
+                </h3>
+                <p className="text-muted-foreground">
+                  Connect with fellow food enthusiasts, share discoveries, and participate in cooking challenges.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto text-center">
-          <Card className="bg-gradient-card border-border/50 shadow-card">
+          <Card className="bg-gradient-to-br from-flavor-warm to-white border-border/50 shadow-xl">
             <CardContent className="p-8 space-y-6">
-              <h2 className="text-3xl font-bold text-foreground">
-                Want to Try <span className="text-brand">FlavorTrail</span> for Free?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Join our early access program and help shape the future of cooking education
-              </p>
+              <div className="space-y-4">
+                <h2 className="text-4xl font-bold text-foreground">
+                  Ready to Start Your <span className="text-brand">Culinary Journey</span>?
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Join thousands of home cooks who are already transforming their skills with FlavorTrail
+                </p>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/early-access" onClick={() => window.scrollTo(0, 0)}>
-                  <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-flavor-spice to-flavor-berry hover:shadow-lg transition-all duration-200 hover:scale-105">
+                  <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-flavor-spice to-flavor-berry hover:shadow-lg transition-all duration-200 hover:scale-105">
                     <Zap className="w-5 h-5 mr-2" />
-                    Get Early Access
+                    Get Early Access Free
                   </Button>
                 </Link>
                 <Link to="/about" onClick={() => window.scrollTo(0, 0)}>
-                  <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                  <Button variant="outline" size="lg" className="text-lg px-10 py-6 border-2">
                     Learn More
                   </Button>
                 </Link>
+              </div>
+              
+              <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground pt-4">
+                <div className="flex items-center space-x-2">
+                  <Check className="w-4 h-4 text-flavor-spice" />
+                  <span>No credit card required</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Check className="w-4 h-4 text-flavor-spice" />
+                  <span>Join 500+ early users</span>
+                </div>
               </div>
             </CardContent>
           </Card>

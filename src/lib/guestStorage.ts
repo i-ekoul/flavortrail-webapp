@@ -8,7 +8,23 @@ export interface GuestProgress {
   lastActive: string;
   completedChallenges: string[];
   favoriteRecipes: string[];
-  learningProgress: Record<string, number>;
+  learningProgress: Record<string, any>;
+  selectedAvatar: string;
+  onboardingCompleted?: boolean;
+  onboardingData?: {
+    cookingLevel: 'beginner' | 'intermediate' | 'advanced';
+    interests: string[];
+    goals: string[];
+    timeCommitment: '5min' | '15min' | '30min' | '1hour';
+    preferredCuisines: string[];
+    learningStyle: 'visual' | 'hands-on' | 'theoretical' | 'mixed';
+  };
+  // Guest mode tracking
+  questsCompletedToday?: number;
+  lastQuestDate?: string;
+  daysActive?: number;
+  upgradePromptsDismissed?: string[];
+  completedQuickLessons?: string[];
 }
 
 const STORAGE_KEY = 'flavortrail-guest-progress';
@@ -31,7 +47,13 @@ export const getGuestProgress = (): GuestProgress => {
     lastActive: new Date().toISOString(),
     completedChallenges: [],
     favoriteRecipes: [],
-    learningProgress: {}
+    learningProgress: {},
+    selectedAvatar: 'chef-hat',
+    questsCompletedToday: 0,
+    lastQuestDate: new Date().toISOString().split('T')[0],
+    daysActive: 1,
+    upgradePromptsDismissed: [],
+    completedQuickLessons: []
   };
 };
 
@@ -74,8 +96,17 @@ export const hasGuestProgress = (): boolean => {
 // Helper functions for specific progress updates
 export const completeQuest = (questId: string): GuestProgress => {
   const progress = getGuestProgress();
+  const today = new Date().toISOString().split('T')[0];
+  
+  // Reset daily counter if new day
+  if (progress.lastQuestDate !== today) {
+    progress.questsCompletedToday = 0;
+    progress.lastQuestDate = today;
+  }
+  
   const newCompletedQuests = progress.completedQuests + 1;
   const newBadges = [...progress.badges];
+  const newQuestsToday = (progress.questsCompletedToday || 0) + 1;
   
   // Add badge for first quest completion
   if (newCompletedQuests === 1 && !newBadges.includes('First Quest')) {
@@ -89,7 +120,9 @@ export const completeQuest = (questId: string): GuestProgress => {
   
   return updateGuestProgress({
     completedQuests: newCompletedQuests,
-    badges: newBadges
+    badges: newBadges,
+    questsCompletedToday: newQuestsToday,
+    lastQuestDate: today
   });
 };
 
@@ -126,4 +159,47 @@ export const updateStreak = (): GuestProgress => {
   return updateGuestProgress({
     currentStreak: newStreak
   });
+};
+
+export const updateAvatar = (avatarId: string): GuestProgress => {
+  return updateGuestProgress({
+    selectedAvatar: avatarId
+  });
+};
+
+export const saveOnboardingData = (onboardingData: any): GuestProgress => {
+  return updateGuestProgress({
+    onboardingCompleted: true,
+    onboardingData: onboardingData
+  });
+};
+
+export const hasCompletedOnboarding = (): boolean => {
+  const progress = getGuestProgress();
+  return progress.onboardingCompleted === true;
+};
+
+export const resetOnboarding = (): GuestProgress => {
+  return updateGuestProgress({
+    onboardingCompleted: false,
+    onboardingData: undefined
+  });
+};
+
+export const completeQuickLesson = (lessonId: string): GuestProgress => {
+  const progress = getGuestProgress();
+  const completedLessons = progress.completedQuickLessons || [];
+  
+  if (!completedLessons.includes(lessonId)) {
+    return updateGuestProgress({
+      completedQuickLessons: [...completedLessons, lessonId]
+    });
+  }
+  
+  return progress;
+};
+
+export const hasCompletedQuickLesson = (lessonId: string): boolean => {
+  const progress = getGuestProgress();
+  return progress.completedQuickLessons?.includes(lessonId) || false;
 };

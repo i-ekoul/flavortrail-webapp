@@ -5,38 +5,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Shield, Eye, Lock, Users, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
-            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-brand">FlavorTrail</span>
-              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
-            </div>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <Link to="/">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-            <img 
-              src="/ft.mascot.wo-bg.png" 
-              alt="FlavorTrail Mascot" 
-              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ transform: 'scaleX(-1)' }}
-            />
-          </div>
-        </nav>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Home"
+        backButtonLink="/"
+      />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">

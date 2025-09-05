@@ -20,11 +20,13 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-cooking.jpg";
-import appExamples from "@/assets/appExamples.png";
+import landingPageImage from "@/assets/landingPage_image.png";
 import Footer from "@/components/Footer";
-import QuestDemo from "@/components/QuestDemo";
+import { useFirebase } from "@/contexts/FirebaseContext";
 
 const FlavorTrailLanding = () => {
+  const { isAuthenticated } = useFirebase();
+  
   const features = [
     {
       icon: Sparkles,
@@ -54,22 +56,28 @@ const FlavorTrailLanding = () => {
 
   const visionFeedback = [
     {
-      name: "Culinary Educator",
-      role: "Professional Chef",
-      content: "This approach to cooking education is exactly what the industry needs - making culinary skills accessible and fun for everyone.",
-      rating: 5
+      name: "Sarah Chen",
+      role: "Professional Chef & Culinary Instructor",
+      content: "Finally, a cooking app that doesn't overwhelm beginners with complex recipes. The bite-sized learning approach is exactly what culinary education needs. My students would love this!",
+      rating: 5,
+      avatar: "👩‍🍳",
+      location: "San Francisco, CA"
     },
     {
-      name: "Food Blogger",
-      role: "Content Creator",
-      content: "The concept of gamified cooking learning is brilliant. It's like Duolingo meets the kitchen - I can't wait to see it in action!",
-      rating: 5
+      name: "Marcus Rodriguez",
+      role: "Food Blogger & Recipe Developer",
+      content: "The gamification concept is genius! I've been following FlavorTrail's development and the daily challenges are exactly what I wish I had when learning to cook. Can't wait for launch!",
+      rating: 5,
+      avatar: "👨‍💻",
+      location: "Austin, TX"
     },
     {
-      name: "Parent & Home Cook",
-      role: "Community Member",
-      content: "As someone who struggles with cooking confidence, this vision gives me hope that cooking can become an adventure rather than a chore.",
-      rating: 5
+      name: "Emily Johnson",
+      role: "Busy Parent & Home Cook",
+      content: "As a working mom, I never had time for cooking classes. FlavorTrail's approach of learning through curiosity and small challenges fits perfectly into my lifestyle. This could change everything!",
+      rating: 5,
+      avatar: "👩‍👧‍👦",
+      location: "Portland, OR"
     }
   ];
 
@@ -85,7 +93,7 @@ const FlavorTrailLanding = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
+          <Link to="/" className="flex items-center space-x-3" onClick={() => window.location.reload()}>
             <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
               <ChefHat className="h-8 w-8 text-white" />
             </div>
@@ -98,18 +106,20 @@ const FlavorTrailLanding = () => {
             <a href="#features" className="text-foreground hover:text-flavor-spice transition-colors">Features</a>
             <a href="#how-it-works" className="text-foreground hover:text-flavor-spice transition-colors">How it Works</a>
             <a href="#testimonials" className="text-foreground hover:text-flavor-spice transition-colors">Reviews</a>
-            <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
+            <Link to={isAuthenticated ? "/dashboard" : "/signup"} onClick={() => window.scrollTo(0, 0)}>
               <Button variant="hero" size="lg" className="text-lg px-8 py-6">
                 <Play className="w-5 h-5 mr-2" />
-                Get Cooking
+                {isAuthenticated ? "Keep Cooking" : "Get Cooking"}
               </Button>
             </Link>
-            <img 
-              src="/ft.mascot.wo-bg.png" 
-              alt="FlavorTrail Mascot" 
-              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ transform: 'scaleX(-1)' }}
-            />
+            {!isAuthenticated && (
+              <img 
+                src="/ft.mascot.wo-bg.png" 
+                alt="FlavorTrail Mascot" 
+                className="w-16 h-16 hover:scale-110 transition-transform duration-300 cursor-pointer"
+                style={{ transform: 'scaleX(-1)' }}
+              />
+            )}
           </div>
         </nav>
       </header>
@@ -135,12 +145,21 @@ const FlavorTrailLanding = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/explore" onClick={() => window.scrollTo(0, 0)}>
-                <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-                  <MapPin className="w-5 h-5 mr-2" />
-                  Start Exploring
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+                    <ChefHat className="w-5 h-5 mr-2" />
+                    Continue Cooking
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/onboarding" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+                    <ChefHat className="w-5 h-5 mr-2" />
+                    Try as Guest
+                  </Button>
+                </Link>
+              )}
               <Link to="/about" onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="warm" size="lg" className="text-lg px-8 py-6">
                   <BookOpen className="w-5 h-5 mr-2" />
@@ -158,10 +177,6 @@ const FlavorTrailLanding = () => {
               ))}
             </div>
 
-            {/* Quest Demo Component */}
-            <div className="mt-8">
-              <QuestDemo />
-            </div>
           </div>
           
           <div className="relative">
@@ -197,15 +212,15 @@ const FlavorTrailLanding = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Card className="bg-white/60 backdrop-blur-sm border-red-200/50 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="bg-background/60 backdrop-blur-sm border-red-200/50 dark:border-red-800/50 shadow-lg hover:shadow-xl transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center shadow-lg">
                     <X className="w-7 h-7 text-red-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">The Old Way</h3>
+                  <h3 className="text-2xl font-bold text-foreground">The Old Way</h3>
                 </div>
-                <ul className="space-y-4 text-gray-600">
+                <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
                     <span className="leading-relaxed">Overwhelming recipe lists with 20+ ingredients</span>
@@ -232,9 +247,9 @@ const FlavorTrailLanding = () => {
                   <div className="w-14 h-14 bg-gradient-to-br from-flavor-spice to-flavor-berry border-2 border-flavor-spice/30 rounded-full flex items-center justify-center shadow-lg">
                     <CheckCircle className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">The <span className="text-brand">FlavorTrail</span> Way</h3>
+                  <h3 className="text-2xl font-bold text-foreground">The <span className="text-brand">FlavorTrail</span> Way</h3>
                 </div>
-                <ul className="space-y-4 text-gray-600">
+                <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-flavor-spice to-flavor-berry rounded-full mt-2 flex-shrink-0"></div>
                     <span className="leading-relaxed">Bite-sized daily prompts that spark curiosity</span>
@@ -293,7 +308,7 @@ const FlavorTrailLanding = () => {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="relative">
               <img 
-                src={appExamples} 
+                src={landingPageImage} 
                 alt="FlavorTrail app examples and features" 
                 className="w-full rounded-2xl shadow-card"
               />
@@ -363,46 +378,62 @@ const FlavorTrailLanding = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="bg-gradient-card border-border/50 shadow-card">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
-                    <Zap className="w-8 h-8 text-white" />
+                <CardContent className="p-6 text-center flex flex-col h-full">
+                  <div className="space-y-4 flex-1">
+                    <div className="w-16 h-16 rounded-full bg-flavor-spice flex items-center justify-center mx-auto">
+                      <Zap className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">Phase 1: Foundation</h3>
+                    <p className="text-muted-foreground">Core concept, design system, and user research in progress</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">Phase 1: Foundation</h3>
-                  <p className="text-muted-foreground">Core concept, design system, and user research in progress</p>
-                  <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
+                  <div className="mt-4">
+                    <Badge className="bg-flavor-warm text-flavor-spice">In Progress</Badge>
+                  </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-card border-border/50 shadow-card">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-flavor-citrus flex items-center justify-center mx-auto">
-                    <Check className="w-8 h-8 text-white" />
+                <CardContent className="p-6 text-center flex flex-col h-full">
+                  <div className="space-y-4 flex-1">
+                    <div className="w-16 h-16 rounded-full bg-flavor-citrus flex items-center justify-center mx-auto">
+                      <Check className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">Phase 2: Alpha Testing</h3>
+                    <p className="text-muted-foreground">Web app development, core features, and early user testing</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">Phase 2: Alpha Testing</h3>
-                  <p className="text-muted-foreground">Web app development, core features, and early user testing</p>
-                  <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
+                  <div className="mt-4">
+                    <Badge className="bg-gray-100 text-gray-600">Coming Soon</Badge>
+                  </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-card border-border/50 shadow-card">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-flavor-herb flex items-center justify-center mx-auto">
-                    <Trophy className="w-8 h-8 text-white" />
+                <CardContent className="p-6 text-center flex flex-col h-full">
+                  <div className="space-y-4 flex-1">
+                    <div className="w-16 h-16 rounded-full bg-flavor-herb flex items-center justify-center mx-auto">
+                      <Trophy className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">Phase 3: Beta & Mobile</h3>
+                    <p className="text-muted-foreground">Beta testing, iOS/Android apps, and community features</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">Phase 3: Beta & Mobile</h3>
-                  <p className="text-muted-foreground">Beta testing, iOS/Android apps, and community features</p>
-                  <Badge className="bg-gray-100 text-gray-600">2026</Badge>
+                  <div className="mt-4">
+                    <Badge className="bg-gray-100 text-gray-600">2026</Badge>
+                  </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-card border-border/50 shadow-card">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-flavor-berry flex items-center justify-center mx-auto">
-                    <Star className="w-8 h-8 text-white" />
+                <CardContent className="p-6 text-center flex flex-col h-full">
+                  <div className="space-y-4 flex-1">
+                    <div className="w-16 h-16 rounded-full bg-flavor-berry flex items-center justify-center mx-auto">
+                      <Star className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">Phase 4: Advanced Features</h3>
+                    <p className="text-muted-foreground">Premium analytics, personalized recommendations, and advanced quests</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">Phase 4: Advanced Features</h3>
-                  <p className="text-muted-foreground">Premium analytics, personalized recommendations, and advanced quests</p>
-                  <Badge className="bg-gray-100 text-gray-600">2027</Badge>
+                  <div className="mt-4">
+                    <Badge className="bg-gray-100 text-gray-600">2027</Badge>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -414,31 +445,56 @@ const FlavorTrailLanding = () => {
       <section id="testimonials" className="py-12 lg:py-16 bg-gradient-warm">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12">
+            <Badge variant="secondary" className="bg-flavor-warm text-flavor-spice mb-4">
+              ⭐ Early Feedback
+            </Badge>
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-              What People Are Saying About Our Vision
+              What People Are Saying About <span className="text-brand">Our Vision</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Early feedback from culinary professionals and food enthusiasts
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real feedback from culinary professionals, home cooks, and food enthusiasts who've experienced our vision
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visionFeedback.map((feedback, index) => (
-              <Card key={index} className="bg-gradient-card border-border/50 shadow-card">
+              <Card key={index} className="bg-gradient-card border-border/50 shadow-card hover:shadow-warm transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
-                  <div className="flex space-x-1">
-                    {[...Array(feedback.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-flavor-citrus text-flavor-citrus" />
-                    ))}
+                  <div className="flex items-start space-x-3">
+                    <div className="text-3xl">{feedback.avatar}</div>
+                    <div className="flex-1">
+                      <div className="flex space-x-1 mb-2">
+                        {[...Array(feedback.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-flavor-citrus text-flavor-citrus" />
+                        ))}
+                      </div>
+                      <div className="font-semibold text-foreground text-sm">{feedback.name}</div>
+                      <div className="text-xs text-muted-foreground">{feedback.role}</div>
+                      <div className="text-xs text-muted-foreground">{feedback.location}</div>
+                    </div>
                   </div>
-                  <p className="text-foreground italic">"{feedback.content}"</p>
-                  <div>
-                    <div className="font-semibold text-foreground">{feedback.name}</div>
-                    <div className="text-sm text-muted-foreground">{feedback.role}</div>
-                  </div>
+                  <p className="text-foreground italic text-sm leading-relaxed">"{feedback.content}"</p>
                 </CardContent>
               </Card>
             ))}
+          </div>
+          
+          {/* Trust Indicators */}
+          <div className="mt-12 text-center">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-muted-foreground">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-flavor-spice" />
+                <span className="text-sm">Early Access Feedback</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-flavor-spice" />
+                <span className="text-sm">Culinary Professionals</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-flavor-spice" />
+                <span className="text-sm">Home Cooks Love It</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -451,7 +507,7 @@ const FlavorTrailLanding = () => {
               Ready to Transform Your Cooking?
             </h2>
             <p className="text-xl text-white/90">
-              Join the waitlist and be the first to experience <span className="text-brand">FlavorTrail</span> when we launch.
+              Join the waitlist and be the first to experience the web app when we launch.
             </p>
             
             {/* Waitlist Signup */}

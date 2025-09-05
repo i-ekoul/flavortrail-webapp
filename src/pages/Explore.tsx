@@ -4,6 +4,7 @@ import { ChefHat, ArrowLeft, MapPin, Utensils, Star, Pizza, Fish, Leaf, Zap, Sou
 import { Button } from '../components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 interface CountryData {
   name: string;
@@ -145,34 +146,11 @@ const Explore: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-warm">
       {/* Header */}
-      <header className="py-6 px-4">
-        <div className="container mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
-            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-brand">FlavorTrail</span>
-              <span className="text-sm text-foreground/80">Cook. Curiously.</span>
-            </div>
-          </Link>
-          
-          <div className="flex items-center space-x-4">
-            <Link to="/dashboard" onClick={() => window.scrollTo(0, 0)}>
-              <Button variant="outline" className="bg-white/90 border-white/60 text-foreground hover:bg-white hover:border-flavor-spice/30">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Dashboard
-              </Button>
-            </Link>
-            <img
-              src="/ft.mascot.wo-bg.png"
-              alt="FlavorTrail Mascot"
-              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ transform: 'scaleX(-1)' }}
-            />
-          </div>
-        </div>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Dashboard"
+        backButtonLink="/dashboard"
+      />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
@@ -188,24 +166,26 @@ const Explore: React.FC = () => {
 
         {/* World Map Grid */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {Object.entries(countryData).map(([countryId, country]) => (
               <div
                 key={countryId}
                 onClick={() => handleCountryClick(countryId)}
-                className="bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:from-white hover:to-white/95 hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/60 shadow-lg hover:border-flavor-spice/30"
+                className="group bg-gradient-to-br from-background/95 to-background/85 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:from-background hover:to-background/95 hover:shadow-2xl transition-all duration-500 hover:scale-105 border-2 border-flavor-spice/40 shadow-lg hover:border-flavor-spice/60 dark:border-flavor-spice/50 dark:hover:border-flavor-spice/70 dark:dark-card dark:card-hover relative overflow-hidden"
               >
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice/20 to-flavor-berry/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <country.icon className="w-8 h-8 text-flavor-spice" />
+                <div className="text-center relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice/20 to-flavor-berry/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-flavor-spice/30 group-hover:to-flavor-berry/30 transition-all duration-300 group-hover:scale-110">
+                    <country.icon className="w-8 h-8 text-flavor-spice group-hover:text-flavor-berry transition-colors duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{country.name}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-flavor-spice transition-colors duration-300">{country.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4 font-medium">{country.capital}</p>
-                  <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-flavor-spice/10 to-flavor-berry/10 rounded-full px-4 py-2">
-                    <Star className="w-4 h-4 text-flavor-spice fill-current" />
-                    <span className="text-sm text-flavor-spice font-semibold">Explore Cuisine</span>
+                  <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-flavor-spice/10 to-flavor-berry/10 rounded-full px-4 py-2 group-hover:from-flavor-spice/20 group-hover:to-flavor-berry/20 transition-all duration-300">
+                    <Star className="w-4 h-4 text-flavor-spice fill-current group-hover:text-flavor-berry transition-colors duration-300" />
+                    <span className="text-sm text-flavor-spice font-semibold group-hover:text-flavor-berry transition-colors duration-300">Explore Cuisine</span>
                   </div>
                 </div>
+                {/* Subtle shimmer effect */}
+                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               </div>
             ))}
           </div>
@@ -213,11 +193,16 @@ const Explore: React.FC = () => {
 
         {/* Guest Mode Notice */}
         <div className="mt-12 text-center">
-          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto border border-white/50 shadow-lg">
+          <div className="bg-background/95 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto border-2 border-flavor-spice/40 shadow-lg dark:border-flavor-spice/50 dark:dark-card dark:card-hover">
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-flavor-spice/20 to-flavor-berry/20 rounded-full flex items-center justify-center">
+                <Star className="w-6 h-6 text-flavor-spice" />
+              </div>
+            </div>
             <h3 className="text-lg font-semibold text-foreground mb-2">Guest Mode Active</h3>
             <p className="text-muted-foreground mb-4">
               You're exploring as a guest! Your discoveries won't be saved. 
-              <Link to="/premium" className="text-flavor-spice hover:text-flavor-berry transition-colors ml-1 font-semibold" onClick={() => window.scrollTo(0, 0)}>
+              <Link to="/premium" className="text-flavor-spice hover:text-flavor-berry transition-colors ml-1 font-semibold hover:underline" onClick={() => window.scrollTo(0, 0)}>
                 Sign up to save your culinary journey
               </Link>
             </p>
@@ -227,9 +212,9 @@ const Explore: React.FC = () => {
 
       {/* Country Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={closeModal}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto dark:dark-card border-2 border-flavor-spice/40 dark:border-flavor-spice/50">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center">
+            <DialogTitle className="text-2xl font-bold text-center text-foreground">
               {selectedCountryData?.culturalName} Cuisine
             </DialogTitle>
           </DialogHeader>
@@ -238,30 +223,30 @@ const Explore: React.FC = () => {
             <div className="space-y-6">
               {/* Food Culture */}
               <div>
-                <h3 className="text-lg font-semibold mb-2 flex items-center">
+                <h3 className="text-lg font-semibold mb-2 flex items-center text-foreground">
                   <Utensils className="w-5 h-5 mr-2 text-flavor-spice" />
                   Food Culture
                 </h3>
-                <p className="text-gray-700">{selectedCountryData.foodCulture}</p>
+                <p className="text-muted-foreground leading-relaxed">{selectedCountryData.foodCulture}</p>
               </div>
 
               {/* Sample Dish */}
               <div>
-                <h3 className="text-lg font-semibold mb-2">Featured Dish</h3>
-                <div className="bg-gradient-to-r from-flavor-spice/10 to-flavor-berry/10 rounded-lg p-4">
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Featured Dish</h3>
+                <div className="bg-gradient-to-r from-flavor-spice/10 to-flavor-berry/10 rounded-lg p-4 border border-flavor-spice/20 dark:border-flavor-spice/30">
                   <h4 className="font-semibold text-flavor-spice">{selectedCountryData.sampleDish.name}</h4>
-                  <p className="text-gray-700 mt-1">{selectedCountryData.sampleDish.description}</p>
+                  <p className="text-muted-foreground mt-1 leading-relaxed">{selectedCountryData.sampleDish.description}</p>
                 </div>
               </div>
 
               {/* Popular Dishes */}
               <div>
-                <h3 className="text-lg font-semibold mb-2">Popular Dishes</h3>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Popular Dishes</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedCountryData.popularDishes.map((dish, index) => (
                     <span
                       key={index}
-                      className="bg-flavor-spice/20 text-flavor-spice px-3 py-1 rounded-full text-sm"
+                      className="bg-flavor-spice/20 text-flavor-spice px-3 py-1 rounded-full text-sm border border-flavor-spice/30 hover:bg-flavor-spice/30 transition-colors duration-200"
                     >
                       {dish}
                     </span>
@@ -271,12 +256,12 @@ const Explore: React.FC = () => {
 
               {/* Famous Spices */}
               <div>
-                <h3 className="text-lg font-semibold mb-2">Signature Spices & Ingredients</h3>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Signature Spices & Ingredients</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedCountryData.famousSpices.map((spice, index) => (
                     <span
                       key={index}
-                      className="bg-flavor-berry/20 text-flavor-berry px-3 py-1 rounded-full text-sm"
+                      className="bg-flavor-berry/20 text-flavor-berry px-3 py-1 rounded-full text-sm border border-flavor-berry/30 hover:bg-flavor-berry/30 transition-colors duration-200"
                     >
                       {spice}
                     </span>

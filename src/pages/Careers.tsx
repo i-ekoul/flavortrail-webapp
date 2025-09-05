@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, ChefHat, ArrowLeft, Sparkles, Map, BookOpen, Trophy, Users, Zap, Heart, Target, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const Careers = () => {
   const openPositions = [];
@@ -58,28 +59,11 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
-            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-brand">FlavorTrail</span>
-              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
-            </div>
-          </Link>
-          <Link 
-            to="/" 
-            onClick={() => window.scrollTo(0, 0)}
-            className="inline-flex items-center gap-2 text-flavor-spice hover:text-flavor-berry transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </nav>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Home"
+        backButtonLink="/"
+      />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">

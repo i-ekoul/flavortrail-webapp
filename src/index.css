@@ -18,9 +18,9 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
 
-    /* Warm spice primary - paprika/chili inspired */
-    --primary: 14 88% 55%;
-    --primary-foreground: 210 40% 98%;
+    /* Theme-aware primary colors */
+    --primary: var(--theme-primary);
+    --primary-foreground: var(--theme-primary-foreground);
 
     /* Warm cream secondary */
     --secondary: 25 40% 94%;
@@ -29,8 +29,8 @@ All colors MUST be HSL.
     --muted: 25 40% 94%;
     --muted-foreground: 25 5.3% 44.7%;
 
-    /* Saffron accent */
-    --accent: 45 93% 58%;
+    /* Theme-aware accent */
+    --accent: var(--theme-accent);
     --accent-foreground: 20 14.3% 4.1%;
 
     --destructive: 0 84.2% 60.2%;
@@ -38,23 +38,23 @@ All colors MUST be HSL.
 
     --border: 25 27% 88%;
     --input: 25 27% 88%;
-    --ring: 14 88% 55%;
+    --ring: var(--theme-primary);
 
-    /* Custom FlavorTrail colors */
-    --flavor-spice: 14 88% 55%;
+    /* Theme-aware FlavorTrail colors */
+    --flavor-spice: var(--theme-primary);
     --flavor-herb: 95 38% 62%;
-    --flavor-citrus: 45 93% 58%;
-    --flavor-berry: 340 82% 52%;
+    --flavor-citrus: var(--theme-accent);
+    --flavor-berry: var(--theme-secondary);
     --flavor-warm: 25 40% 94%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(14 88% 55%) 0%, hsl(340 82% 52%) 50%, hsl(45 93% 58%) 100%);
+    /* Theme-aware gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--theme-primary)) 0%, hsl(var(--theme-secondary)) 50%, hsl(var(--theme-accent)) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(28 40% 98%) 0%, hsl(25 40% 94%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(25 40% 96%) 100%);
     
-    /* Shadows with warm tones */
-    --shadow-warm: 0 4px 20px -4px hsl(14 88% 55% / 0.15);
-    --shadow-glow: 0 0 40px hsl(45 93% 58% / 0.3);
+    /* Theme-aware shadows */
+    --shadow-warm: 0 4px 20px -4px hsl(var(--theme-primary) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--theme-accent) / 0.3);
     --shadow-card: 0 8px 32px -8px hsl(20 14.3% 4.1% / 0.1);
     
     /* Smooth transitions */
@@ -80,6 +80,7 @@ All colors MUST be HSL.
   }
 
   .dark {
+    /* Classic black and gray with subtle enhancements */
     --background: 20 14.3% 4.1%;
     --foreground: 210 40% 98%;
 
@@ -89,8 +90,8 @@ All colors MUST be HSL.
     --popover: 24 9.8% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 14 88% 55%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--theme-primary);
+    --primary-foreground: var(--theme-primary-foreground);
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 210 40% 98%;
@@ -98,7 +99,7 @@ All colors MUST be HSL.
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 45 93% 58%;
+    --accent: var(--theme-accent);
     --accent-foreground: 24 9.8% 10%;
 
     --destructive: 0 62.8% 30.6%;
@@ -106,19 +107,24 @@ All colors MUST be HSL.
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 14 88% 55%;
+    --ring: var(--theme-primary);
 
-    /* FlavorTrail dark mode colors */
-    --flavor-spice: 14 88% 55%;
+    /* Theme-aware FlavorTrail dark mode colors */
+    --flavor-spice: var(--theme-primary);
     --flavor-herb: 95 38% 62%;
-    --flavor-citrus: 45 93% 58%;
-    --flavor-berry: 340 82% 52%;
+    --flavor-citrus: var(--theme-accent);
+    --flavor-berry: var(--theme-secondary);
     --flavor-warm: 240 3.7% 15.9%;
     
-    /* Dark mode gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(14 88% 55%) 0%, hsl(340 82% 52%) 50%, hsl(45 93% 58%) 100%);
+    /* Theme-aware dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--theme-primary)) 0%, hsl(var(--theme-secondary)) 50%, hsl(var(--theme-accent)) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(20 14.3% 4.1%) 0%, hsl(24 9.8% 10%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(24 9.8% 10%) 0%, hsl(240 3.7% 15.9%) 100%);
+    
+    /* Theme-aware dark mode shadows */
+    --shadow-warm: 0 4px 20px -4px hsl(var(--theme-primary) / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--theme-accent) / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -141,6 +147,35 @@ All colors MUST be HSL.
   }
 }
 
+/* Color Theme Variables */
+:root[data-theme="spice"] {
+  --theme-primary: 14 88% 55%;
+  --theme-secondary: 340 82% 52%;
+  --theme-accent: 45 93% 58%;
+  --theme-primary-foreground: 210 40% 98%;
+}
+
+:root[data-theme="ocean"] {
+  --theme-primary: 200 100% 50%;
+  --theme-secondary: 220 100% 60%;
+  --theme-accent: 180 100% 45%;
+  --theme-primary-foreground: 210 40% 98%;
+}
+
+:root[data-theme="forest"] {
+  --theme-primary: 120 60% 45%;
+  --theme-secondary: 140 50% 40%;
+  --theme-accent: 100 70% 50%;
+  --theme-primary-foreground: 210 40% 98%;
+}
+
+:root[data-theme="sunset"] {
+  --theme-primary: 25 100% 60%;
+  --theme-secondary: 320 80% 55%;
+  --theme-accent: 45 100% 65%;
+  --theme-primary-foreground: 210 40% 98%;
+}
+
 /* Custom animations */
 @keyframes float {
   0%, 100% {
@@ -151,9 +186,98 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--theme-primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(var(--theme-primary) / 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 /* FlavorTrail Brand Utilities */
 @layer utilities {
   .text-brand {
     @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+  
+  /* Subtle dark mode enhancements */
+  .dark-glow {
+    @apply shadow-glow;
+    animation: glow 4s ease-in-out infinite;
+  }
+  
+  .dark-card {
+    @apply bg-card/90 backdrop-blur-sm border border-border/60;
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
+  }
+  
+  .dark-gradient {
+    background: linear-gradient(145deg, hsl(24 9.8% 10%) 0%, hsl(240 3.7% 15.9%) 100%);
+  }
+  
+  .shimmer {
+    background: linear-gradient(90deg, transparent, hsl(var(--theme-primary) / 0.08), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+  
+  .subtle-border {
+    border: 1px solid hsl(240 3.7% 15.9% / 0.6);
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
+  }
+  
+  /* Theme color utilities */
+  .text-theme-primary {
+    color: hsl(var(--theme-primary));
+  }
+  
+  .text-theme-secondary {
+    color: hsl(var(--theme-secondary));
+  }
+  
+  .text-theme-accent {
+    color: hsl(var(--theme-accent));
+  }
+  
+  .bg-theme-primary {
+    background-color: hsl(var(--theme-primary));
+  }
+  
+  .bg-theme-secondary {
+    background-color: hsl(var(--theme-secondary));
+  }
+  
+  .bg-theme-accent {
+    background-color: hsl(var(--theme-accent));
+  }
+  
+  .border-theme-primary {
+    border-color: hsl(var(--theme-primary));
+  }
+  
+  .border-theme-secondary {
+    border-color: hsl(var(--theme-secondary));
+  }
+  
+  .border-theme-accent {
+    border-color: hsl(var(--theme-accent));
   }
 }

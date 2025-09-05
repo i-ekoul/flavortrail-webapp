@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Sparkles, Map, BookOpen, Trophy, Users, Zap, Heart, Target, Globe, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const EarlyAccess = () => {
   const webappFeatures = [
@@ -47,27 +48,11 @@ const EarlyAccess = () => {
 
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center space-x-2">
-            <div className="h-8 w-8 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-lg flex items-center justify-center">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-brand">
-              <span className="text-brand">FlavorTrail</span>
-            </span>
-          </Link>
-          <Link 
-            to="/" 
-            onClick={() => window.scrollTo(0, 0)}
-            className="inline-flex items-center gap-2 text-flavor-spice hover:text-flavor-berry transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </nav>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Home"
+        backButtonLink="/"
+      />
 
       {/* Page Header */}
       <header className="container mx-auto px-4 py-6">

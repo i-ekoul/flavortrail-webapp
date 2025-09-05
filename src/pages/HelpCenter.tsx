@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Search, BookOpen, MessageCircle, Mail, Phone, HelpCircle, ChefHat, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const HelpCenter = () => {
   const categories = [
@@ -46,34 +47,11 @@ const HelpCenter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-warm">
-      {/* Navigation Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-3" onClick={() => window.scrollTo(0, 0)}>
-            <div className="h-14 w-14 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-xl flex items-center justify-center">
-              <ChefHat className="h-8 w-8 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-brand">FlavorTrail</span>
-              <span className="text-sm text-muted-foreground">Cook. Curiously.</span>
-            </div>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <Link to="/">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-            <img 
-              src="/ft.mascot.wo-bg.png" 
-              alt="FlavorTrail Mascot" 
-              className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ transform: 'scaleX(-1)' }}
-            />
-          </div>
-        </nav>
-      </header>
+      <Header 
+        showBackButton={true}
+        backButtonText="Back to Home"
+        backButtonLink="/"
+      />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">
@@ -89,17 +67,46 @@ const HelpCenter = () => {
             For now, you can reach out to us directly with any questions.
           </p>
           
-          {/* Coming Soon Message */}
-          <div className="max-w-2xl mx-auto p-6 bg-gradient-card border border-border/50 rounded-xl">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-full flex items-center justify-center mx-auto">
-                <HelpCircle className="w-8 h-8 text-white" />
+          {/* Coming Soon Message and Support Section */}
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-stretch">
+            {/* Help Center in Development Card */}
+            <div className="p-8 bg-gradient-card border border-border/50 rounded-xl flex flex-col justify-between min-h-[400px]">
+              <div className="text-center space-y-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-full flex items-center justify-center mx-auto">
+                  <HelpCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground">Help Center in Development</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We're working on creating a comprehensive help center with searchable articles, 
+                  step-by-step guides, and detailed FAQs. In the meantime, we're here to help you directly!
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Help Center in Development</h3>
-              <p className="text-muted-foreground">
-                We're working on creating a comprehensive help center with searchable articles, 
-                step-by-step guides, and detailed FAQs. In the meantime, we're here to help you directly!
-              </p>
+              <div className="mt-8 text-center">
+                <div className="inline-flex items-center px-4 py-2 bg-muted/30 rounded-full">
+                  <span className="text-sm text-muted-foreground">🚧 Coming Soon</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Get Personal Support Card */}
+            <div className="p-8 bg-gradient-card border border-border/50 rounded-xl flex flex-col justify-between min-h-[400px]">
+              <div className="text-center space-y-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-flavor-spice to-flavor-berry rounded-full flex items-center justify-center mx-auto">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground">Get <span className="text-flavor-spice">Personal</span> Support</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Have a question, feedback, or need help? We'd love to hear from you and will respond personally within 2-3 business days.
+                </p>
+              </div>
+              <div className="mt-8 space-y-4">
+                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="spice" size="lg" className="w-full text-lg px-8 py-6">
+                    <Mail className="w-5 h-5 mr-2" />
+                    Contact Us
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -261,41 +268,6 @@ const HelpCenter = () => {
         </div>
       </section>
 
-      {/* Still Need Help */}
-      <section className="container mx-auto px-4 py-12 bg-background">
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground">
-            Get <span className="text-brand">Personal</span> Support
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Since our help center is still under construction, we're here to help you directly. 
-            Reach out and we'll get back to you personally within 2-3 business days.
-          </p>
-          
-          <div className="max-w-md mx-auto">
-            <Card className="bg-gradient-card border-border/50 shadow-card">
-              <CardHeader className="text-center">
-                <Mail className="w-16 h-16 text-flavor-spice mx-auto mb-4" />
-                <CardTitle className="text-2xl text-foreground">Get in Touch</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center space-y-6">
-                <p className="text-muted-foreground">
-                  Have a question, feedback, or need help? We'd love to hear from you.
-                </p>
-                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-                  <Button variant="spice" size="lg" className="w-full text-lg px-8 py-6">
-                    <Mail className="w-5 h-5 mr-2" />
-                    Contact Us
-                  </Button>
-                </Link>
-                <p className="text-sm text-muted-foreground">
-                  We personally respond to every message within 2-3 business days
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
       
       <Footer />
     </div>
