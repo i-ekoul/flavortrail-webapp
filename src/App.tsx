@@ -41,7 +41,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/onboarding" element={<OnboardingFlow onComplete={() => window.location.href = '/dashboard'} onSkip={() => window.location.href = '/dashboard'} />} />
+              <Route path="/onboarding" element={<OnboardingFlow onComplete={() => window.location.reload()} onSkip={() => window.location.reload()} />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/about" element={<About />} />

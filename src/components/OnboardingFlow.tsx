@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { useSound } from "@/contexts/SoundContext";
 import { saveOnboardingData, type GuestProgress } from "@/lib/guestStorage";
+import { useFirebase } from "@/contexts/FirebaseContext";
+import { updateUserProgress } from "@/lib/firebaseAuth";
 
 // Types for onboarding data
 export interface OnboardingData {
@@ -47,6 +49,7 @@ const OnboardingFlow = ({ onComplete, onSkip }: OnboardingFlowProps) => {
     learningStyle: 'mixed'
   });
   const { playSound } = useSound();
+  const { isAuthenticated, user, refreshUserProgress } = useFirebase();
 
   const steps = [
     { id: 'welcome', title: 'Welcome to FlavorTrail!', progress: 0 },
@@ -221,12 +224,29 @@ const OnboardingFlow = ({ onComplete, onSkip }: OnboardingFlowProps) => {
     }
   };
 
-  const handleComplete = () => {
-    // Save onboarding data to guest progress
-    saveOnboardingData(onboardingData);
-    
-    playSound('quest-complete');
-    onComplete(onboardingData);
+  const handleComplete = async () => {
+    try {
+      if (isAuthenticated && user) {
+        // Save onboarding data to Firebase for authenticated users
+        await updateUserProgress(user.uid, {
+          onboardingCompleted: true,
+          onboardingData: onboardingData
+        });
+        // Refresh user progress to update the context
+        refreshUserProgress();
+      } else {
+        // Save onboarding data to guest progress
+        saveOnboardingData(onboardingData);
+      }
+      
+      playSound('quest-complete');
+      onComplete(onboardingData);
+    } catch (error) {
+      console.error('Error saving onboarding data:', error);
+      // Still complete the onboarding even if save fails
+      playSound('quest-complete');
+      onComplete(onboardingData);
+    }
   };
 
   const updateData = (updates: Partial<OnboardingData>) => {

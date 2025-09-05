@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { hasCompletedOnboarding } from "@/lib/guestStorage";
-import { isUserLoggedIn, hasCompletedUserOnboarding } from "@/lib/userStorage";
+import { useFirebase } from "@/contexts/FirebaseContext";
 
 interface OnboardingGuardProps {
   children: React.ReactNode;
@@ -9,13 +9,18 @@ interface OnboardingGuardProps {
 
 const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, userProgress, loading: firebaseLoading } = useFirebase();
 
   useEffect(() => {
-    const isLoggedIn = isUserLoggedIn();
-    const hasCompleted = isLoggedIn ? hasCompletedUserOnboarding() : hasCompletedOnboarding();
+    // Wait for Firebase to finish loading
+    if (firebaseLoading) return;
+
+    // Check if user has completed onboarding
+    const hasCompleted = isAuthenticated 
+      ? userProgress?.onboardingCompleted 
+      : hasCompletedOnboarding();
     
     // If user is on onboarding page but has already completed it, redirect to dashboard
     if (location.pathname === '/onboarding' && hasCompleted) {
@@ -33,7 +38,7 @@ const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
     }
     
     setIsLoading(false);
-  }, [location.pathname, navigate]);
+  }, [location.pathname, navigate, isAuthenticated, userProgress, firebaseLoading]);
 
   if (isLoading) {
     return (
