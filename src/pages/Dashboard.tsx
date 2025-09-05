@@ -64,6 +64,7 @@ const Dashboard = () => {
   const [notifications, setNotifications] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [deleteAccountOpen, setDeleteAccountOpen] = useState(false);
+  const [deletePassword, setDeletePassword] = useState('');
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedChallengeId, setSelectedChallengeId] = useState<string>("");
   const [quickLessonOpen, setQuickLessonOpen] = useState(false);
@@ -1004,11 +1005,26 @@ const Dashboard = () => {
               </ul>
             </div>
             
+            <div className="mb-4">
+              <Label htmlFor="delete-password" className="text-sm font-medium">
+                Confirm your password to delete account:
+              </Label>
+              <Input
+                id="delete-password"
+                type="password"
+                value={deletePassword}
+                onChange={(e) => setDeletePassword(e.target.value)}
+                placeholder="Enter your password"
+                className="mt-1"
+              />
+            </div>
+            
             <div className="flex gap-3">
               <Button
                 variant="outline"
                 onClick={() => {
                   setDeleteAccountOpen(false);
+                  setDeletePassword('');
                   playSound('button-click');
                 }}
                 className="flex-1"
@@ -1018,16 +1034,32 @@ const Dashboard = () => {
               <Button
                 variant="destructive"
                 onClick={async () => {
+                  if (!deletePassword.trim()) {
+                    alert('Please enter your password to confirm account deletion.');
+                    return;
+                  }
+                  
                   try {
-                    await deleteUserAccount();
+                    await deleteUserAccount(deletePassword);
                     playSound('button-click');
                     alert('Account deleted successfully. You will be redirected to the home page.');
                     window.location.href = '/';
-                  } catch (error) {
+                  } catch (error: any) {
                     console.error('Error deleting account:', error);
-                    alert('Failed to delete account. Please try again or contact support.');
+                    let errorMessage = 'Failed to delete account. Please try again.';
+                    
+                    if (error.code === 'auth/wrong-password') {
+                      errorMessage = 'Incorrect password. Please try again.';
+                    } else if (error.code === 'auth/too-many-requests') {
+                      errorMessage = 'Too many failed attempts. Please try again later.';
+                    } else if (error.code === 'auth/requires-recent-login') {
+                      errorMessage = 'Please sign out and sign back in, then try again.';
+                    }
+                    
+                    alert(errorMessage);
                   }
                 }}
+                disabled={!deletePassword.trim()}
                 className="flex-1"
               >
                 Delete Account

@@ -5,6 +5,8 @@ import {
   signOut, 
   sendPasswordResetEmail,
   updateProfile,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
   User,
   UserCredential
 } from 'firebase/auth';
@@ -110,14 +112,18 @@ export const signOutUser = async (): Promise<void> => {
 };
 
 // Delete user account and all associated data
-export const deleteUserAccount = async (): Promise<void> => {
+export const deleteUserAccount = async (password: string): Promise<void> => {
   try {
     const user = auth.currentUser;
-    if (!user) {
+    if (!user || !user.email) {
       throw new Error('No user is currently signed in');
     }
 
     const uid = user.uid;
+
+    // Re-authenticate the user before deletion (required by Firebase)
+    const credential = EmailAuthProvider.credential(user.email, password);
+    await reauthenticateWithCredential(user, credential);
 
     // Delete user data from Firestore
     await deleteDoc(doc(db, 'users', uid));
