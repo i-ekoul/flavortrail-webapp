@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,7 +36,8 @@ import {
   HelpCircle,
   LogOut,
   Share2,
-  Check
+  Check,
+  Trash2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getGuestProgress, updateGuestProgress, completeChallenge, updateStreak, updateAvatar, hasCompletedOnboarding, completeQuickLesson, hasCompletedQuickLesson, type GuestProgress } from "@/lib/guestStorage";
@@ -52,7 +53,7 @@ import QuickLessonPopup from "@/components/QuickLessonPopup";
 import { useTheme, type ColorTheme } from "@/contexts/ThemeContext";
 import { useSound } from "@/contexts/SoundContext";
 import { useFirebase } from "@/contexts/FirebaseContext";
-import { updateUserAvatar, updateUserDisplayName, signOutUser } from "@/lib/firebaseAuth";
+import { updateUserAvatar, updateUserDisplayName, signOutUser, deleteUserAccount } from "@/lib/firebaseAuth";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -62,6 +63,7 @@ const Dashboard = () => {
   const [localSelectedAvatar, setLocalSelectedAvatar] = useState<string>('');
   const [notifications, setNotifications] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [deleteAccountOpen, setDeleteAccountOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedChallengeId, setSelectedChallengeId] = useState<string>("");
   const [quickLessonOpen, setQuickLessonOpen] = useState(false);
@@ -937,26 +939,99 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 ) : (
-                  <button 
-                    onClick={async () => {
-                      try {
-                        await signOutUser();
+                  <>
+                    <button
+                      onClick={async () => {
+                        try {
+                          await signOutUser();
+                          playSound('button-click');
+                          window.location.href = '/';
+                        } catch (error) {
+                          console.error('Error signing out:', error);
+                        }
+                      }}
+                      className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors w-full text-left text-red-600"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      <div>
+                        <p className="font-medium">Sign Out</p>
+                        <p className="text-sm text-muted-foreground">Sign out of your account</p>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setDeleteAccountOpen(true);
                         playSound('button-click');
-                        window.location.href = '/';
-                      } catch (error) {
-                        console.error('Error signing out:', error);
-                      }
-                    }}
-                    className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors w-full text-left text-red-600"
-                  >
-                    <LogOut className="w-5 h-5" />
-                    <div>
-                      <p className="font-medium">Sign Out</p>
-                      <p className="text-sm text-muted-foreground">Sign out of your account</p>
-                    </div>
-                  </button>
+                      }}
+                      className="flex items-center gap-3 p-3 rounded-lg border hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors w-full text-left text-red-600"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                      <div>
+                        <p className="font-medium">Delete Account</p>
+                        <p className="text-sm text-muted-foreground">Permanently delete your account and all data</p>
+                      </div>
+                    </button>
+                  </>
                 )}
               </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Account Confirmation Modal */}
+      <Dialog open={deleteAccountOpen} onOpenChange={setDeleteAccountOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-red-600">
+              <Trash2 className="w-5 h-5" />
+              Delete Account
+            </DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+              <h4 className="font-medium text-red-800 dark:text-red-200 mb-2">What will be deleted:</h4>
+              <ul className="text-sm text-red-700 dark:text-red-300 space-y-1">
+                <li>• Your account and login credentials</li>
+                <li>• All your cooking progress and achievements</li>
+                <li>• Your personalized preferences and settings</li>
+                <li>• All your saved recipes and favorites</li>
+              </ul>
+            </div>
+            
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setDeleteAccountOpen(false);
+                  playSound('button-click');
+                }}
+                className="flex-1"
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={async () => {
+                  try {
+                    await deleteUserAccount();
+                    playSound('button-click');
+                    alert('Account deleted successfully. You will be redirected to the home page.');
+                    window.location.href = '/';
+                  } catch (error) {
+                    console.error('Error deleting account:', error);
+                    alert('Failed to delete account. Please try again or contact support.');
+                  }
+                }}
+                className="flex-1"
+              >
+                Delete Account
+              </Button>
             </div>
           </div>
         </DialogContent>

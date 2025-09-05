@@ -9,7 +9,7 @@ import {
   UserCredential
 } from 'firebase/auth';
 import { auth } from './firebase';
-import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 export interface FirebaseUser {
@@ -105,6 +105,30 @@ export const signOutUser = async (): Promise<void> => {
     await signOut(auth);
   } catch (error) {
     console.error('Error signing out user:', error);
+    throw error;
+  }
+};
+
+// Delete user account and all associated data
+export const deleteUserAccount = async (): Promise<void> => {
+  try {
+    const user = auth.currentUser;
+    if (!user) {
+      throw new Error('No user is currently signed in');
+    }
+
+    const uid = user.uid;
+
+    // Delete user data from Firestore
+    await deleteDoc(doc(db, 'users', uid));
+    await deleteDoc(doc(db, 'userProgress', uid));
+
+    // Delete the user account from Firebase Auth
+    await user.delete();
+
+    console.log('User account and all data deleted successfully');
+  } catch (error) {
+    console.error('Error deleting user account:', error);
     throw error;
   }
 };
